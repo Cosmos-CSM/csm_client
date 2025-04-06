@@ -1,5 +1,4 @@
-import 'package:csm_client/src/csm_act_effect.dart';
-import 'package:csm_client/src/interfaces/interfaces_module.dart';
+import 'package:csm_client/csm_client.dart';
 
 /// Base for [CSMServiceResolver].
 ///

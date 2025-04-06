@@ -1,6 +1,8 @@
 /// Support for doing something awesome.
 ///
 /// More dartdocs go here.
+// ignore_for_file: directives_ordering
+
 library;
 
 export 'package:http/src/client.dart' show Client;
@@ -8,15 +10,33 @@ export 'package:http/src/request.dart';
 export 'package:http/src/response.dart';
 export 'package:http/testing.dart';
 
-// --> Bases module
-export 'src/bases/bases_module.dart';
-// --> Common module
-export 'src/common/common_module.dart';
-// --> Act effect class
-export 'src/csm_act_effect.dart';
-// --> Interfaces module
-export 'src/interfaces/interfaces_module.dart';
-// --> Migrations module
-export 'src/migrations/migrations_module.dart';
-// --> Models module
-export 'src/models/models_module.dart';
+// --> Exportin [src] <-- //
+export 'src/csm_server_interface.dart';
+export 'src/csm_server_base.dart';
+
+// --> Exporting [Service] scope obejcts <-- //
+export 'src/service/csm_act_effect.dart';
+export 'src/service/csm_act_effect_base.dart';
+export 'src/service/csm_act_effect_interface.dart';
+export 'src/service/csm_encodable_interface.dart';
+export 'src/service/csm_entity_interface.dart';
+export 'src/service/csm_service_interface.dart';
+export 'src/service/csm_service_resolver_interface.dart';
+export 'src/service/csm_service_base.dart';
+export 'src/service/csm_service_resolver_base.dart';
+export 'src/service/csm_named_entity_interface.dart';
+export 'src/service/csm_named_entity_base.dart';
+export 'src/service/csm_entity_base.dart';
+
+// --> Exporting [Models] <-- //
+export 'src/models/csm_entity_invalid_property.dart';
+export 'src/models/csm_uri.dart';
+
+// --> Exporting [Common] scope objects <-- //
+export 'src/common/typedefs.dart';
+export 'src/common/csm_protocols.dart';
+
+// --> Exporting [common.extensions] <-- //
+export 'src/common/extensions/csm_int_extension.dart';
+export 'src/common/extensions/csm_jobject_extension.dart';
+export 'src/common/extensions/csm_string_extension.dart';

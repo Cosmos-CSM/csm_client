@@ -1,0 +1,8 @@
+import 'package:csm_client/csm_client.dart';
+
+/// [interface] definition for [encodable] implementations, this means usually, that the object needs to be [encoded] for
+/// system communications through network or protocols.
+abstract interface class CSMEncodableInterface {
+  /// Converts the current [object] into and [encoded] object.
+  JObject encode();
+}

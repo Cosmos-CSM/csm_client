@@ -1,4 +1,4 @@
-import 'package:csm_client/src/common/common_module.dart';
+import 'package:csm_client/csm_client.dart';
 
 /// Interface for [CSMActEffect].
 ///
@@ -11,6 +11,9 @@ abstract interface class CSMActEffectInterface {
   /// [onSuccess] - When the [ActEffect] resulves successfuly.
   /// [onFailure] - When the [ActEffect] receives a failed [StatusCode].
   /// [onException] - When the [ActEffect] got interrupted by an exception.
-  /// [log] - Wheter the exception should be logged.
-  void resolve(Function(JObject success) onSuccess, Function(JObject failure, int statusCode) onFailure, Function(Object exception, StackTrace trace) onException);
+  void resolve(
+    Function(JObject success) onSuccess,
+    Function(JObject failure, int statusCode) onFailure,
+    Function(Object exception, StackTrace trace) onException,
+  );
 }

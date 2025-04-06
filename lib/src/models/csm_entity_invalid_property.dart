@@ -1,5 +1,5 @@
 /// Structure that represent the information related to a [Set] property validation error.
-final class CSMSetValidationResult {
+final class CSMEntityInvalidProperty {
   /// Name of the invaldiated property.
   final String property;
 
@@ -9,6 +9,6 @@ final class CSMSetValidationResult {
   /// Internal knowledge about the applied rules.
   final String rules;
 
-  /// Creates a new [CSMSetValidationResult] object instance that represent a [Set] property validation result.
-  const CSMSetValidationResult(this.property, this.reason, this.rules);
+  /// Creates a new [CSMEntityInvalidProperty] object instance that represent a [Set] property validation result.
+  const CSMEntityInvalidProperty(this.property, this.reason, this.rules);
 }

@@ -1,8 +1,4 @@
-import 'package:csm_client/src/common/common_module.dart';
-import 'package:csm_client/src/csm_act_effect.dart';
-import 'package:csm_client/src/interfaces/csm_encode_interface.dart';
-import 'package:csm_client/src/models/models_module.dart';
-import 'package:http/http.dart';
+import 'package:csm_client/csm_client.dart';
 
 /// Interface for [CSMService].
 ///
@@ -11,7 +7,7 @@ import 'package:http/http.dart';
 /// [CSMService] concept: is a set of operations where get data by protocol transactions,
 /// like an endpoint. (i.e.) google.com/security <-- service; google.com/security/calculate <-- act, where the operation will be solved with data.
 abstract interface class CSMServiceInterface {
-  static const String authKey = 'CSMAuth'; 
+  static const String authKey = 'CSMAuth';
 
   /// The current service network location.
   late final CSMUri endpoint;
@@ -30,7 +26,7 @@ abstract interface class CSMServiceInterface {
   /// [request] - The request structured object that stores all the required data by the [act].
   ///
   /// [headers] - Optional headers to be sent to the calculated [act] network location.
-  Future<CSMActEffect> post<M extends CSMEncodeInterface>(
+  Future<CSMActEffect> post<M extends CSMEncodableInterface>(
     String act,
     M request, {
     String? auth,
@@ -45,7 +41,7 @@ abstract interface class CSMServiceInterface {
   /// [request] - The request list of structured objects that stores all the required data by the [act].
   ///
   /// [headers] - Optional headers to be sent to the calculated [act] network location.
-  Future<CSMActEffect> postList<M extends CSMEncodeInterface>(
+  Future<CSMActEffect> postList<M extends CSMEncodableInterface>(
     String act,
     List<M> request, {
     String? auth,

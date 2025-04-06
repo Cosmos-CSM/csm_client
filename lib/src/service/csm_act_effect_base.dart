@@ -1,5 +1,4 @@
-import 'package:csm_client/src/common/common_module.dart';
-import 'package:csm_client/src/interfaces/interfaces_module.dart';
+import 'package:csm_client/csm_client.dart';
 
 /// Base for [CSMActEffect].
 ///

@@ -1,11 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:csm_client/src/common/common_module.dart';
-import 'package:csm_client/src/csm_act_effect.dart';
-import 'package:csm_client/src/interfaces/interfaces_module.dart';
-import 'package:csm_client/src/models/models_module.dart';
-import 'package:http/http.dart';
+import 'package:csm_client/csm_client.dart';
 
 /// Base for [CSMService].
 ///
@@ -46,7 +42,7 @@ abstract class CSMServiceBase implements CSMServiceInterface {
   }
 
   @override
-  Future<CSMActEffect> post<M extends CSMEncodeInterface>(
+  Future<CSMActEffect> post<M extends CSMEncodableInterface>(
     String act,
     M request, {
     String? auth,
@@ -59,7 +55,6 @@ abstract class CSMServiceBase implements CSMServiceInterface {
       } else {
         headers.addAll(this.headers);
       }
-
 
       if (auth != null) {
         headers[HttpHeaders.authorizationHeader] = '${CSMServiceInterface.authKey} $auth';
@@ -77,11 +72,11 @@ abstract class CSMServiceBase implements CSMServiceInterface {
       return CSMActEffect(error: parsedBody, status: statusCode);
     } catch (x, st) {
       return CSMActEffect(exception: x, trace: st);
-    } 
+    }
   }
 
   @override
-  Future<CSMActEffect> postList<M extends CSMEncodeInterface>(
+  Future<CSMActEffect> postList<M extends CSMEncodableInterface>(
     String act,
     List<M> request, {
     String? auth,
