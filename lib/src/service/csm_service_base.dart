@@ -42,7 +42,7 @@ abstract class CSMServiceBase implements CSMServiceInterface {
   }
 
   @override
-  Future<CSMActEffect> post<M extends CSMEncodableInterface>(
+  Future<CSMActEffect> post<M extends CSMEncodable>(
     String act,
     M request, {
     String? auth,
@@ -76,7 +76,7 @@ abstract class CSMServiceBase implements CSMServiceInterface {
   }
 
   @override
-  Future<CSMActEffect> postList<M extends CSMEncodableInterface>(
+  Future<CSMActEffect> postList<M extends CSMEncodable>(
     String act,
     List<M> request, {
     String? auth,

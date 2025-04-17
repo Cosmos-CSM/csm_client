@@ -1,7 +1,7 @@
-import 'package:csm_client/src/service/csm_entity_interface.dart';
+import 'package:csm_client/src/service/entity_i.dart';
 
 /// [interface] definition for [entities] that are named.
-abstract interface class CSMNamedEntityInterface implements CSMEntityInterface {
+abstract interface class NamedEntityI<TEntity extends EntityI<TEntity>> implements EntityI<TEntity> {
   /// [Entity] unique name.
   late String name;
 
