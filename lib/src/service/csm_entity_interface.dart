@@ -1,9 +1,6 @@
 import 'package:csm_client/csm_client.dart';
 
-/// Defines a [Migration] internal product concept interface to define
-/// base requirements for [Set] implementations and definitions.
-///
-/// [Migration]: concept related to everything from the databases sources.
+/// [Interface] for [Entities] implementations. Specifies every necessary member for a business entity.
 abstract interface class CSMEntityInterface implements CSMEncodableInterface {
   /// Entity database pointer.
   late int id;
