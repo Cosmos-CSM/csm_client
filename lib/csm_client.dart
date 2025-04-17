@@ -18,7 +18,7 @@ export 'src/csm_server_base.dart';
 export 'src/service/csm_act_effect.dart';
 export 'src/service/csm_act_effect_base.dart';
 export 'src/service/csm_act_effect_interface.dart';
-export 'src/service/csm_encodable_interface.dart';
+export 'src/service/decoding/csm_encodable_interface.dart';
 export 'src/service/csm_entity_interface.dart';
 export 'src/service/csm_service_interface.dart';
 export 'src/service/csm_service_resolver_interface.dart';
