@@ -18,15 +18,18 @@ export 'src/csm_server_base.dart';
 export 'src/service/csm_act_effect.dart';
 export 'src/service/csm_act_effect_base.dart';
 export 'src/service/csm_act_effect_interface.dart';
-export 'src/service/decoding/csm_encodable.dart';
 export 'src/service/entity_i.dart';
+export 'src/service/entity_b.dart';
+export 'src/service/named_entity_i.dart';
+export 'src/service/named_entity_b.dart';
 export 'src/service/csm_service_interface.dart';
 export 'src/service/csm_service_resolver_interface.dart';
 export 'src/service/csm_service_base.dart';
 export 'src/service/csm_service_resolver_base.dart';
-export 'src/service/named_entity_i.dart';
-export 'src/service/named_entity_b.dart';
-export 'src/service/entity_b.dart';
+
+// --> Exporting [service.decoding] <--
+export 'src/service/decoding/csm_encodable.dart';
+export 'src/service/decoding/csm_decodable.dart';
 
 // --> Exporting [Models] <-- //
 export 'src/models/csm_entity_invalid_property.dart';
