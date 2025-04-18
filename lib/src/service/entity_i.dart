@@ -1,7 +1,7 @@
 import 'package:csm_client/csm_client.dart';
 
 /// [Interface] for [Entities] implementations. Specifies every necessary member for a business entity.
-abstract interface class EntityI implements CSMEncodable, CSMDecodable {
+abstract interface class EntityI implements EncodableI, DecodableI, VariationI {
   /// Entity database pointer.
   late int id;
 

@@ -26,7 +26,7 @@ abstract interface class CSMServiceInterface {
   /// [request] - The request structured object that stores all the required data by the [act].
   ///
   /// [headers] - Optional headers to be sent to the calculated [act] network location.
-  Future<CSMActEffect> post<M extends CSMEncodable>(
+  Future<CSMActEffect> post<M extends EncodableI>(
     String act,
     M request, {
     String? auth,
@@ -41,7 +41,7 @@ abstract interface class CSMServiceInterface {
   /// [request] - The request list of structured objects that stores all the required data by the [act].
   ///
   /// [headers] - Optional headers to be sent to the calculated [act] network location.
-  Future<CSMActEffect> postList<M extends CSMEncodable>(
+  Future<CSMActEffect> postList<M extends EncodableI>(
     String act,
     List<M> request, {
     String? auth,

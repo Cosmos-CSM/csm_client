@@ -28,8 +28,9 @@ export 'src/service/csm_service_base.dart';
 export 'src/service/csm_service_resolver_base.dart';
 
 // --> Exporting [service.decoding] <--
-export 'src/service/decoding/csm_encodable.dart';
-export 'src/service/decoding/csm_decodable.dart';
+export 'src/service/decoding/encodable_i.dart';
+export 'src/service/decoding/decodable_i.dart';
+export 'src/service/decoding/variation_i.dart';
 
 // --> Exporting [Models] <-- //
 export 'src/models/csm_entity_invalid_property.dart';
