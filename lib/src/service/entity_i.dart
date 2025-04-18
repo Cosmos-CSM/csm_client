@@ -9,6 +9,9 @@ abstract interface class EntityI implements CSMEncodable, CSMDecodable {
   /// Entity handling timestamp.
   late DateTime timestamp;
 
+  /// Creates a new [EntityI] instance with default values.
+  EntityI();
+
   /// Client level evaluation for this set record to check if can be written correctly by the service.
   ///
   /// If the result list came empty, means no validation results were thrown (meaning the evaluation is correct).
