@@ -16,6 +16,9 @@ abstract class EntityB implements EntityI {
   @override
   DateTime timestamp = DateTime.now();
 
+  /// Creates a new [EntityB] instance with default values.
+  EntityB();
+
   @override
   @mustCallSuper
   @mustBeOverridden
