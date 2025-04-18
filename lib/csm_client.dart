@@ -14,7 +14,7 @@ export 'package:http/testing.dart';
 export 'src/csm_server_interface.dart';
 export 'src/csm_server_base.dart';
 
-// --> Exporting [Service] scope obejcts <-- //
+// --> Exporting [service] scope obejcts <-- //
 export 'src/service/csm_act_effect.dart';
 export 'src/service/csm_act_effect_base.dart';
 export 'src/service/csm_act_effect_interface.dart';
@@ -35,9 +35,12 @@ export 'src/service/decoding/csm_decodable.dart';
 export 'src/models/csm_entity_invalid_property.dart';
 export 'src/models/csm_uri.dart';
 
-// --> Exporting [Common] scope objects <-- //
+// --> Exporting [common] scope objects <-- //
 export 'src/common/typedefs.dart';
 export 'src/common/csm_protocols.dart';
+
+// --> Exporting [common.constants] <-- //
+export 'src/common/constants/entity_keys.dart';
 
 // --> Exporting [common.extensions] <-- //
 export 'src/common/extensions/csm_int_extension.dart';
