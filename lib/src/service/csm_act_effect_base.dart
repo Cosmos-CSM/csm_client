@@ -10,10 +10,10 @@ import 'package:csm_client/csm_client.dart';
 /// if not, the implementation class won´t have access to [CSMActEffectBase] behavior.
 abstract class CSMActEffectBase implements CSMActEffectInterface {
   /// Successed service object.
-  final JObject? _success;
+  final DataMap? _success;
 
   /// Failed service object.
-  final JObject? _error;
+  final DataMap? _error;
 
   /// Exception thrown during [ActEffect].
   final Object? _exception;
@@ -26,8 +26,8 @@ abstract class CSMActEffectBase implements CSMActEffectInterface {
 
   /// Generates a [CSMActEffectBase] behavior handler.
   const CSMActEffectBase({
-    JObject? success,
-    JObject? error,
+    DataMap? success,
+    DataMap? error,
     Object? exception,
     StackTrace? trace,
     int? status,
@@ -39,8 +39,8 @@ abstract class CSMActEffectBase implements CSMActEffectInterface {
 
   @override
   void resolve(
-    Function(JObject success) onSuccess,
-    Function(JObject failure, int statusCode) onFailure,
+    Function(DataMap success) onSuccess,
+    Function(DataMap failure, int statusCode) onFailure,
     Function(Object exception, StackTrace trace) onException,
   ) {
     if (_success != null) {

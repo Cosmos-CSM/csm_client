@@ -10,13 +10,13 @@ abstract interface class CSMServiceInterface {
   static const String authKey = 'CSMAuth';
 
   /// The current service network location.
-  late final CSMUri endpoint;
+  late final Uri endpoint;
 
   /// The current service network connection communicator provider.
   late final Client comm;
 
   /// Default headers subscribed to all actions.
-  late final CSMHeaders headers;
+  late final Headers headers;
 
   /// Performs a [POST] method action via network connection to the specified [endpoint] properties calculated with the
   /// [act] given location inside the [endpoint] hosting.
@@ -30,7 +30,7 @@ abstract interface class CSMServiceInterface {
     String act,
     M request, {
     String? auth,
-    CSMHeaders? headers,
+    Headers? headers,
   });
 
   /// Performs a [POST] method action via network connection to the specified [endpoint] properties calculated with the
@@ -45,6 +45,6 @@ abstract interface class CSMServiceInterface {
     String act,
     List<M> request, {
     String? auth,
-    CSMHeaders? headers,
+    Headers? headers,
   });
 }

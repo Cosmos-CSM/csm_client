@@ -4,5 +4,5 @@ import 'package:csm_client/csm_client.dart';
 /// members to generate an [TObject] based on an [Encoded] content.
 abstract interface class DecodableI {
   /// Loads the current object content from the given [encode] object.
-  void decode(JObject encode);
+  void decode(DataMap encode);
 }

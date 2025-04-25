@@ -14,5 +14,5 @@ abstract interface class EntityI implements EncodableI, DecodableI, VariationI {
   /// Client level evaluation for this set record to check if can be written correctly by the service.
   ///
   /// If the result list came empty, means no validation results were thrown (meaning the evaluation is correct).
-  List<CSMEntityInvalidProperty> evaluate();
+  List<EntityInvalidation> evaluate();
 }

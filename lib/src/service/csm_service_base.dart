@@ -1,7 +1,10 @@
 import 'dart:convert';
+import 'dart:core' as core show Uri;
+import 'dart:core';
 import 'dart:io';
 
 import 'package:csm_client/csm_client.dart';
+import 'package:http/http.dart' show Response;
 
 /// Base for [CSMService].
 ///
@@ -11,28 +14,28 @@ import 'package:csm_client/csm_client.dart';
 /// like an endpoint. (i.e.) google.com/security <-- service; google.com/security/calculate <-- act, where the operation will be solved with data.
 abstract class CSMServiceBase implements CSMServiceInterface {
   @override
-  late final CSMUri endpoint;
+  late final Uri endpoint;
 
   @override
   late final Client comm;
 
   @override
-  late final CSMHeaders headers;
+  late final Headers headers;
 
   /// Default headers to indicate a standard [JSON] transaction.
-  static final CSMHeaders _kHeaders = <String, String>{
+  static final Headers _kHeaders = <String, String>{
     "accept-type": 'application/json',
     "content-type": 'application/json',
   };
 
   /// Generates a new [CSMServiceBase] behavior handler.
   CSMServiceBase(
-    CSMUri host,
+    Uri host,
     String servicePath, {
     Client? client,
-    CSMHeaders? headers,
+    Headers? headers,
   }) {
-    endpoint = CSMUri.includeEndpoint(host, servicePath);
+    endpoint = Uri.includeEndpoint(host, servicePath);
     comm = client ?? Client();
     this.headers = <String, String>{};
     this.headers.addAll(_kHeaders);
@@ -46,9 +49,9 @@ abstract class CSMServiceBase implements CSMServiceInterface {
     String act,
     M request, {
     String? auth,
-    CSMHeaders? headers,
+    Headers? headers,
   }) async {
-    Uri uri = endpoint.resolve(endpoint: act);
+    core.Uri uri = endpoint.resolve(act);
     try {
       if (headers == null) {
         headers = this.headers;
@@ -60,13 +63,13 @@ abstract class CSMServiceBase implements CSMServiceInterface {
         headers[HttpHeaders.authorizationHeader] = '${CSMServiceInterface.authKey} $auth';
       }
 
-      JObject jObject = request.encode();
+      DataMap jObject = request.encode();
       final Response response = await comm.post(
         uri,
         headers: headers,
         body: jsonEncode(jObject),
       );
-      final JObject parsedBody = jsonDecode(response.body);
+      final DataMap parsedBody = jsonDecode(response.body);
       final int statusCode = response.statusCode;
       if (response.statusCode == 200) return CSMActEffect(success: parsedBody, status: 200);
       return CSMActEffect(error: parsedBody, status: statusCode);
@@ -80,9 +83,9 @@ abstract class CSMServiceBase implements CSMServiceInterface {
     String act,
     List<M> request, {
     String? auth,
-    CSMHeaders? headers,
+    Headers? headers,
   }) async {
-    Uri uri = endpoint.resolve(endpoint: act);
+    core.Uri uri = endpoint.resolve(act);
     try {
       if (headers == null) {
         headers = this.headers;
@@ -93,13 +96,13 @@ abstract class CSMServiceBase implements CSMServiceInterface {
         headers[HttpHeaders.authorizationHeader] = '${CSMServiceInterface.authKey} $auth';
       }
 
-      List<JObject> jObject = request.map<JObject>((M e) => e.encode()).toList();
+      List<DataMap> jObject = request.map<DataMap>((M e) => e.encode()).toList();
       final Response response = await comm.post(
         uri,
         headers: headers,
         body: jsonEncode(jObject),
       );
-      final JObject parsedBody = jsonDecode(response.body);
+      final DataMap parsedBody = jsonDecode(response.body);
       final int statusCode = response.statusCode;
       if (response.statusCode == 200) return CSMActEffect(success: parsedBody, status: 200);
       return CSMActEffect(error: parsedBody, status: statusCode);

@@ -12,8 +12,8 @@ abstract interface class CSMActEffectInterface {
   /// [onFailure] - When the [ActEffect] receives a failed [StatusCode].
   /// [onException] - When the [ActEffect] got interrupted by an exception.
   void resolve(
-    Function(JObject success) onSuccess,
-    Function(JObject failure, int statusCode) onFailure,
+    Function(DataMap success) onSuccess,
+    Function(DataMap failure, int statusCode) onFailure,
     Function(Object exception, StackTrace trace) onException,
   );
 }

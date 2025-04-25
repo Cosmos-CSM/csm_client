@@ -21,8 +21,8 @@ abstract class EntityB implements EntityI {
   @override
   @mustCallSuper
   @mustBeOverridden
-  JObject encode([JObject? entityObject]) {
-    JObject encode = <String, Object>{
+  DataMap encode([DataMap? entityObject]) {
+    DataMap encode = <String, Object>{
       EntityKeys.id: id,
       EntityKeys.timestamp: timestamp,
       EntityKeys.discriminator: discriminator,
@@ -38,7 +38,7 @@ abstract class EntityB implements EntityI {
   @override
   @mustCallSuper
   @mustBeOverridden
-  void decode(JObject encode) {
+  void decode(DataMap encode) {
     id = encode.get(EntityKeys.id);
     timestamp = encode.get(EntityKeys.timestamp);
     discriminator = encode.get(EntityKeys.discriminator);

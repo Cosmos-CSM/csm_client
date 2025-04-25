@@ -4,5 +4,5 @@ import 'package:csm_client/csm_client.dart';
 /// to generate [encoded] objects based on an object content.
 abstract interface class EncodableI {
   /// Converts the current [object] into and [encoded] object.
-  JObject encode();
+  DataMap encode();
 }
