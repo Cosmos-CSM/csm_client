@@ -1,5 +1,4 @@
 import 'package:csm_client/csm_client.dart';
-import 'package:csm_client/src/models/property_info.dart';
 
 /// [model] class for [EntityInvalidation].
 ///

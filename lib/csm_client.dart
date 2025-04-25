@@ -26,13 +26,13 @@ export 'src/models/entity_invalidation.dart';
 export 'src/service/csm_act_effect.dart';
 export 'src/service/csm_act_effect_base.dart';
 export 'src/service/csm_act_effect_interface.dart';
-export 'src/service/entity_i.dart';
-export 'src/service/entity_b.dart';
-export 'src/service/named_entity_i.dart';
-export 'src/service/named_entity_b.dart';
-export 'src/service/csm_service_interface.dart';
+export 'src/service/entity/entity_i.dart';
+export 'src/service/entity/entity_b.dart';
+export 'src/service/entity/named_entity_i.dart';
+export 'src/service/entity/named_entity_b.dart';
+export 'src/service/service_i.dart';
 export 'src/service/csm_service_resolver_interface.dart';
-export 'src/service/csm_service_base.dart';
+export 'src/service/service_b.dart';
 export 'src/service/csm_service_resolver_base.dart';
 
 // --> Exporting [service.decoding] <--

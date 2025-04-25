@@ -1,4 +1,4 @@
-import 'package:csm_client/src/service/entity_i.dart';
+import 'package:csm_client/src/service/entity/entity_i.dart';
 
 /// [interface] definition for [entities] that are named.
 abstract interface class NamedEntityI implements EntityI {
