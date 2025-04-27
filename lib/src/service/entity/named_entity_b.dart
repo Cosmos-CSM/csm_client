@@ -1,12 +1,18 @@
 import 'package:csm_client/csm_client.dart';
 
-/// [abstract] definition for [NamedEntities] simplification management.
-abstract class NamedEntityB extends EntityB implements NamedEntityI {
-  /// [Entity] unique name.
+/// [abstract] class for [NamedEntityB].
+///
+///
+/// [T] type of the [NamedEntityB] implementation.
+///
+/// Defines a base data / behavior implementation for [NamedEntityB] implementations, wich are [EntityB] implementations with the added properties of [name] and [description]
+/// to handle specific business entities identification.
+abstract class NamedEntityB<T extends EntityI<T>> extends EntityB<T> implements NamedEntityI<T> {
+  /// [EntityI] unique name.
   @override
   String name = "";
 
-  /// [Entity] description.
+  /// [EntityI] description.
   @override
   String? description;
 }

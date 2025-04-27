@@ -5,17 +5,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Quality (web)",
-            "request": "launch",
-            "type": "dart",
-            "program": "test/",
-            "showMemoryUsage": true,
-            "args": [
-                "-pchrome"
-            ]
-        },
-        {
-            "name": "Quality (native)",
+            "name": "Quality",
             "request": "launch",
             "type": "dart",
             "showMemoryUsage": true,

@@ -1,8 +1,14 @@
 import 'package:csm_client/csm_client.dart';
 import 'package:meta/meta.dart';
 
-/// [Abstract] class for [Entities] base members handling and operations.
-abstract class EntityB implements EntityI {
+/// [abstract] class for [EntityB].
+///
+///
+/// [T] type of the [EntityB] implementation.
+///
+/// Defines a data and behavior base implementation for [EntityB] implementations, handles base [encode] / [decode] behavior automatically adding
+/// the handled properties.
+abstract class EntityB<T extends EntityI<T>> implements EntityI<T> {
   /// Unique specific object identification.
   @override
   String discriminator = "";
