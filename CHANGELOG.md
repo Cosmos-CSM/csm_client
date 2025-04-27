@@ -2,6 +2,22 @@
 
 Changelog history for [csm_client] package.
 
+## 8.0.0 - [06.04-2025]
+
+- Notes:
+
+    1. Reestructure of file management.
+
+    2. Added the [timestamp] property for Entities, and added csm_entity_base to auto handle these properties.
+
+- Fixes: N/A
+
+- Dependencies:
+
+    | Package                                 | Previous Version | Current Version |
+    |:----------------------------------------|:----------------:|:---------------:|
+    | http                                    | 1.3.0            | 1.3.0           |
+
 ## 7.0.0 - [24.09-2024]
 
 - Notes:
