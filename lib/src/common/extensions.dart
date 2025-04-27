@@ -27,8 +27,8 @@ extension DataMapExtension on DataMap {
     int,
     DateTime,
     bool,
-    Map<String, dynamic>,
-    List<Map<String, dynamic>>,
+    DataMap,
+    List<DataMap>,
   ];
 
   /// Gets the value of the first [keyFallbacks] key found at the [DataMap] matched.
@@ -137,7 +137,7 @@ extension DataMapExtension on DataMap {
   /// [caseSensitive] Specifies if the key searching in the object should consider the specific casing of the words.
   T get<T>(String key, [T? defaultValue, bool caseSensitive = false]) {
     if (!_supported.contains(T)) {
-      throw 'Unsupported: This method doesn\'t allow binding for $T';
+      throw Exception('Unsupported: This method doesn\'t allow binding for $T');
     }
 
     if (T == DateTime) return _getDateTime(key, defaultValue as DateTime?, caseSensitive) as T;
@@ -147,7 +147,7 @@ extension DataMapExtension on DataMap {
     if (T == List<DataMap>) return _getDataMapList(key, defaultValue as List<DataMap>?, caseSensitive) as T;
     if (T == bool) return _getCastValue(<String>[key], defaultValue ?? false as T, caseSensitive);
 
-    throw 'CriticalException: Couldn\'t found $T convertion implementation and broke up validations';
+    throw Exception('CriticalException: Couldn\'t found $T convertion implementation and broke up validations');
   }
 
   /// Gets the list value of the given key from the [DataMap].
@@ -194,7 +194,7 @@ extension DataMapExtension on DataMap {
 /// [extension] for [String] type.
 ///
 /// Adds custom extension methods to simplify conversions and calculations with [String] type objects.
-extension CSMStringExtension on String {
+extension StringExtension on String {
   /// Returns whether the current [String] starts with uppercase.
   bool get isStartUpper {
     final String startLetter = substring(0, 1);

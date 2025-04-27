@@ -50,10 +50,24 @@ abstract class ServiceB implements ServiceI {
     }
   }
 
-  Headers _resolveHeaders(Headers? endpointHeaders) {}
+  /// Resolves a [Headers] object based on the endpoint context given [Headers] and whether it needs [authToken].
+  ///
+  ///
+  /// [endpointHeaders] headers for the endpoint request scope.
+  ///
+  /// [authToken] token for request authentication when the endpoint needs it.
+  Headers _resolveHeaders(Headers? endpointHeaders, [String? authToken]) {
+    endpointHeaders?.addAll(headers);
+    endpointHeaders ??= headers;
+    if (authToken != null) {
+      headers[HttpHeaders.authorizationHeader] = '$authKey $authToken';
+    }
+
+    return endpointHeaders;
+  }
 
   @override
-  Future<CSMActEffect> post<T extends EncodableI>(
+  Future<ResponseController> post<T extends EncodableI>(
     String act,
     T request, {
     String? auth,
@@ -61,11 +75,7 @@ abstract class ServiceB implements ServiceI {
   }) async {
     core.Uri uri = address.resolve(act);
     try {
-      headers?.addAll(this.headers);
-      headers ??= this.headers;
-      if (auth != null) {
-        headers[HttpHeaders.authorizationHeader] = '$authKey $auth';
-      }
+      headers = _resolveHeaders(headers, auth);
 
       DataMap reqDataMap = request.encode();
       final Response response = await client.post(
@@ -76,21 +86,20 @@ abstract class ServiceB implements ServiceI {
       final DataMap resDataMap = jsonDecode(response.body);
       final int statusCode = response.statusCode;
 
-      return CSMActEffect(
-        success: statusCode == 200 ? resDataMap : null,
-        error: statusCode != 200 ? resDataMap : null,
-        status: statusCode,
+      return ResponseController(
+        statusCode,
+        data: resDataMap,
       );
-    } catch (x, st) {
-      return CSMActEffect(
-        exception: x,
-        trace: st,
+    } catch (exception, stackTrace) {
+      return ResponseController(
+        500,
+        exception: TracedException(exception, stackTrace),
       );
     }
   }
 
   @override
-  Future<CSMActEffect> postList<T extends EncodableI>(
+  Future<ResponseController> postList<T extends EncodableI>(
     String act,
     List<T> request, {
     String? auth,
@@ -98,11 +107,7 @@ abstract class ServiceB implements ServiceI {
   }) async {
     core.Uri uri = address.resolve(act);
     try {
-      headers?.addAll(this.headers);
-      headers ??= this.headers;
-      if (auth != null) {
-        headers[HttpHeaders.authorizationHeader] = '$authKey $auth';
-      }
+      headers = _resolveHeaders(headers, auth);
 
       List<DataMap> jObject = request.map<DataMap>((T e) => e.encode()).toList();
       final Response response = await client.post(
@@ -112,10 +117,16 @@ abstract class ServiceB implements ServiceI {
       );
       final DataMap parsedBody = jsonDecode(response.body);
       final int statusCode = response.statusCode;
-      if (response.statusCode == 200) return CSMActEffect(success: parsedBody, status: 200);
-      return CSMActEffect(error: parsedBody, status: statusCode);
-    } catch (x, st) {
-      return CSMActEffect(exception: x, trace: st);
+
+      return ResponseController(
+        statusCode,
+        data: parsedBody,
+      );
+    } catch (exception, stackTrace) {
+      return ResponseController(
+        500,
+        exception: TracedException(exception, stackTrace),
+      );
     }
   }
 }

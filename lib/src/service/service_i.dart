@@ -29,7 +29,7 @@ abstract interface class ServiceI {
   /// [auth] (optional) custom authentication string token.
   ///
   /// [headers] (optional) headers to be sent at [endpoint] request level.
-  Future<CSMActEffect> post<T extends EncodableI>(
+  Future<ResponseController> post<T extends EncodableI>(
     String endpoint,
     T body, {
     String? auth,
@@ -48,7 +48,7 @@ abstract interface class ServiceI {
   /// [auth] (optional) custom authentication string token.
   ///
   /// [headers] (optional) headers to be sent at [endpoint] request level.
-  Future<CSMActEffect> postList<T extends EncodableI>(
+  Future<ResponseController> postList<T extends EncodableI>(
     String act,
     List<T> request, {
     String? auth,
