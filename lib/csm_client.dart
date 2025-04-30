@@ -6,7 +6,7 @@ library;
 
 export 'package:http/src/client.dart' show Client;
 
-// --> Exportin [src] 
+// --> Exporting [src] 
 export 'src/server_i.dart';
 export 'src/server_b.dart';
 
