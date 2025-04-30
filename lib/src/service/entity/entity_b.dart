@@ -24,6 +24,18 @@ abstract class EntityB<T extends EntityI<T>> implements EntityI<T> {
   /// Creates a new [EntityB] instance with default values.
   EntityB();
 
+  /// Encodes the current [T] object into a [DataMap] object.
+  ///
+  ///
+  /// [entityObject] acumulative delegated [DataMap] convertion along the different bases implementations.
+  ///
+  /// When implemented from [EntityB], is not needed to encode the following properties:
+  ///
+  /// - [id]
+  /// - [timestamp]
+  /// - [discriminator]
+  ///
+  /// They are being auto encoded from the [EntityB] base behavior.
   @override
   @mustCallSuper
   @mustBeOverridden
@@ -41,6 +53,18 @@ abstract class EntityB<T extends EntityI<T>> implements EntityI<T> {
     return encode;
   }
 
+  /// Decodes the given [DataMap] into the current [T] object, loading the properties bound in the [DataMap].
+  ///
+  ///
+  /// [encode] object storing properties values to load the current [T] instance object.
+  ///
+  /// When implemented from [EntityB], is not needed to decode the following properties:
+  ///
+  /// - [id]
+  /// - [timestamp]
+  /// - [discriminator]
+  ///
+  /// They are being auto decoded from the [EntityB] base behavior.
   @override
   @mustCallSuper
   @mustBeOverridden
