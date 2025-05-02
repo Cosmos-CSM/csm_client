@@ -4,7 +4,8 @@
 // ignore_for_file: directives_ordering
 library;
 
-export 'package:http/src/client.dart' show Client;
+export 'package:http/http.dart' show Client;
+export 'package:http/testing.dart' show MockClient, MockClientHandler, MockClientStreamHandler;
 
 // --> Exporting [src] 
 export 'src/server_i.dart';
