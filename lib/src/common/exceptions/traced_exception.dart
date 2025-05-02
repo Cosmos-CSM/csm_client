@@ -10,4 +10,9 @@ final class TracedException implements Exception {
 
   /// Creates a new [TracedException] instance.
   const TracedException(this.data, this.stackTrace);
+
+  @override
+  String toString() {
+    return data.toString();
+  }
 }
