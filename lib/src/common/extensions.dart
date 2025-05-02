@@ -42,7 +42,7 @@ extension DataMapExtension on DataMap {
       final String currKey = dataEntry.key;
       final bool isIn = fallbacks.any(
         (String keyFallback) {
-          if (!caseSensitive) {
+          if (caseSensitive) {
             return keyFallback == currKey;
           }
 
