@@ -4,7 +4,6 @@ import 'dart:core';
 import 'dart:io';
 
 import 'package:csm_client/csm_client.dart';
-import 'package:http/http.dart' show Response;
 import 'package:meta/meta.dart';
 
 /// [abstract] class for [ServiceB].
@@ -42,7 +41,7 @@ abstract class ServiceB implements ServiceI {
     Headers? headers,
   }) {
     address = Uri.includeEndpoint(host, servicePath);
-    client = client ?? Client();
+    this.client = client ?? Client();
     this.headers = <String, String>{};
     this.headers.addAll(_kHeaders);
     if (headers != null) {
