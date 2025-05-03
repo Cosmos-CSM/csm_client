@@ -40,7 +40,7 @@ abstract class EntityB<T extends EntityI<T>> implements EntityI<T> {
   @mustCallSuper
   @mustBeOverridden
   DataMap encode([DataMap? entityObject]) {
-    DataMap encode = <String, Object>{
+    DataMap encode = <String, Object?>{
       EntityKeys.id: id,
       EntityKeys.timestamp: timestamp,
       EntityKeys.discriminator: discriminator,

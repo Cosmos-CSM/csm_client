@@ -35,12 +35,16 @@ abstract class NamedEntityB<T extends EntityI<T>> extends EntityB<T> implements 
   @mustCallSuper
   @mustBeOverridden
   DataMap encode([DataMap? entityObject]) {
-    return super.encode(
-      <String, Object?>{
+    DataMap encode = <String, Object?>{
         EntityKeys.name: name,
         EntityKeys.description: description,
-      },
-    );
+    };
+
+    if (entityObject != null) {
+      encode.addEntries(entityObject.entries);
+    }
+
+    return super.encode(encode);
   }
 
   /// Decodes the given [DataMap] into the current [T] object, loading the properties bound in the [DataMap].
