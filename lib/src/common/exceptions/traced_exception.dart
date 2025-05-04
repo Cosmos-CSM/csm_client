@@ -12,4 +12,9 @@ final class TracedException implements Exception {
   TracedException(this.data, [StackTrace? stackTrace]) {
     stackTrace = StackTrace.current;
   }
+
+  @override
+  String toString() {
+    return data.toString();
+  }
 }

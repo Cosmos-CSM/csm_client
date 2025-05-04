@@ -37,9 +37,6 @@ final class _SupportedTypeConfiguration<T> {
 ///
 /// Adds custom extension methods to simplify conversions and calculations with [DataMap] type objects.
 extension DataMapExtension on DataMap {
-  
-
-
   /// Stores the current supported [Type]'s to auto cast and run specific sanitization.
   static final List<_SupportedTypeConfiguration<Object>> _supported = <_SupportedTypeConfiguration<Object>>[
     /// --> [DateTime] supported configurations
@@ -127,10 +124,10 @@ extension DataMapExtension on DataMap {
     if (typeConfiguration == null) {
       throw TracedException('Unsupported: This method doesn\'t allow binding for $T');
     }
-    
+
     if (keyValue == null) {
       return typeConfiguration.defaultValue;
-    } 
+    }
 
     return typeConfiguration.convertion(keyValue);
   }
