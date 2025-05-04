@@ -15,7 +15,7 @@ abstract class EntityB<T extends EntityI<T>> implements EntityI<T> {
 
   /// Entity database pointer.
   @override
-  int id = 0;
+  BigInt id = BigInt.from(0);
 
   /// Entity handling timestamp.
   @override
@@ -24,14 +24,26 @@ abstract class EntityB<T extends EntityI<T>> implements EntityI<T> {
   /// Creates a new [EntityB] instance with default values.
   EntityB();
 
+  /// Encodes the current [T] object into a [DataMap] object.
+  ///
+  ///
+  /// [entityObject] acumulative delegated [DataMap] convertion along the different bases implementations.
+  ///
+  /// When implemented from [EntityB], is not needed to encode the following properties:
+  ///
+  /// - [id]
+  /// - [timestamp]
+  /// - [discriminator]
+  ///
+  /// They are being auto encoded from the [EntityB] base behavior.
   @override
   @mustCallSuper
   @mustBeOverridden
   DataMap encode([DataMap? entityObject]) {
-    DataMap encode = <String, Object>{
+    DataMap encode = <String, Object?>{
       EntityKeys.id: id,
-      EntityKeys.timestamp: timestamp,
       EntityKeys.discriminator: discriminator,
+      EntityKeys.timestamp: timestamp.toIso8601String(),
     };
 
     if (entityObject != null) {
@@ -41,6 +53,18 @@ abstract class EntityB<T extends EntityI<T>> implements EntityI<T> {
     return encode;
   }
 
+  /// Decodes the given [DataMap] into the current [T] object, loading the properties bound in the [DataMap].
+  ///
+  ///
+  /// [encode] object storing properties values to load the current [T] instance object.
+  ///
+  /// When implemented from [EntityB], is not needed to decode the following properties:
+  ///
+  /// - [id]
+  /// - [timestamp]
+  /// - [discriminator]
+  ///
+  /// They are being auto decoded from the [EntityB] base behavior.
   @override
   @mustCallSuper
   @mustBeOverridden

@@ -34,6 +34,7 @@ void main() {
     'DataMapExtension',
     () {
       final int intObject = 10;
+      final BigInt bigIntObject = BigInt.from(10);
       final bool boolObject = true;
 
       final DataMap dataMapObject = <String, Object?>{
@@ -42,25 +43,36 @@ void main() {
       final List<DataMap> dataMapListObject = <DataMap>[
         dataMapObject,
       ];
+      
       final DateTime dateTimeObject = DateTime.now();
+      final List<DateTime> dateTimeListObject = <DateTime>[dateTimeObject];
+
       final String stringObject = 'random_testing_string';
 
       final DataMap dataMap = <String, Object?>{
+        'no_key': null,
         'date_time': dateTimeObject.toString(),
+        'date_time_list': <DateTime?>[null, ...dateTimeListObject],
+        'date_time?': null,
+        'date_time?_list': <DateTime?>[null, ...dateTimeListObject],
+        'big_int': bigIntObject.toString(),
+        'big_int?': null,
         'data_map_list': dataMapListObject,
         'data_map': dataMapObject,
+        'data_map?': null,
         'string': stringObject,
+        'string?': null,
         'bool': boolObject,
+        'bool?': null,
         'int': intObject,
+        'int?': null,
       };
 
-      /// [get] method tests.
       group(
-        'get',
+        '[get] method tests',
         () {
-          /// [get] throws exception for unsupported types.
           test(
-            'get: Throws unsupported type exception',
+            '[get] throws unsupported type exception',
             () {
               expect(
                 () => dataMap.get<Type>('no-key'),
@@ -68,58 +80,95 @@ void main() {
               );
             },
           );
-
-          /// [get] correctly gets [DateTime] values.
           test(
-            'get: correctly gets [DateTime] values',
+            '[get] correctly gets [DateTime] / [DateTime?] values',
             () {
-              final DateTime fact = dataMap.get('date_time');
-              expect(dateTimeObject, fact);
+              final DateTime dateTimeValue = dataMap.get('date_time');
+              expect(dateTimeObject, dateTimeValue);
+
+              final DateTime? dateTimeNullValue = dataMap.get('date_time?');
+              expect(null, dateTimeNullValue);
+            },
+          );
+          test(
+            '[get] correctly gets [String] / [String?] values',
+            () {
+              final String stringValue = dataMap.get('string');
+              expect(stringObject, stringValue);
+
+              final String? stringNullValue = dataMap.get('string?');
+              expect(null, stringNullValue);
             },
           );
 
-          /// [get] correctly gets [String] values.
           test(
-            'get: correctly gets [String] values',
+            '[get] correctly gets [int] / [int?] values',
             () {
-              final String fact = dataMap.get('string');
-              expect(stringObject, fact);
+              final int intValue = dataMap.get('int');
+              expect(intObject, intValue);
+
+              final int? intNullValue = dataMap.get('int?');
+              expect(null, intNullValue);
             },
           );
 
-          /// [get] correctly gets [int] values.
           test(
-            'get: correctly gets [int] values',
+            'get: correctly gets [BigInt] / [BigInt?] values',
             () {
-              final int fact = dataMap.get('int');
-              expect(intObject, fact);
+              final BigInt bigIntValue = dataMap.get('big_int');
+              expect(bigIntObject, bigIntValue);
+
+              final BigInt? bigIntNullValue = dataMap.get('big_int?');
+              expect(null, bigIntNullValue);
             },
           );
 
-          /// [get] correctly gets [DataMap] values.
+          /// [get] correctly gets [DataMap] / [DataMap?] values.
           test(
-            'get: correctly gets [DataMap] values',
+            'get: correctly gets [DataMap] / [DataMap?] values',
             () {
-              final DataMap fact = dataMap.get('data_map');
-              expect(dataMapObject, fact);
+              final DataMap dataMapValue = dataMap.get('data_map');
+              expect(dataMapObject, dataMapValue);
+
+              final DataMap? dataMapNullValue = dataMap.get('data_map?');
+              expect(null, dataMapNullValue);
             },
           );
 
-          /// [get] correctly gets [List<DataMap>] values.
+          /// [get] correctly gets [bool] / [bool?] values.
           test(
-            'get: correctly gets [List<DataMap>] values',
+            '[get] correctly gets [bool] / [bool?] values',
             () {
-              final List<DataMap> fact = dataMap.get('data_map_list');
-              expect(dataMapListObject, fact);
+              final bool boolValue = dataMap.get('bool');
+              expect(boolObject, boolValue);
+
+              final bool? boolNullValue = dataMap.get('bool?');
+              expect(boolNullValue, null);
             },
           );
+        },
+      );
 
-          /// [get] correctly gets [bool] values.
+      group(
+        '[getList] method tests',
+        () {
           test(
-            'get: correctly gets [bool] values',
+            '[get] throws unsupported type exception',
             () {
-              final bool fact = dataMap.get('bool');
-              expect(boolObject, fact);
+              expect(
+                () => dataMap.getList<Type>('no_key'),
+                throwsException,
+              );
+            },
+          );
+          test(
+            '[get] correctly gets [DateTime] / [DateTime?] List values',
+            () {
+              final List<DateTime> dateTimeList = dataMap.getList('date_time_list');
+              expect(dateTimeList, dateTimeListObject);
+
+              final List<DateTime?> dateTimeNullList = dataMap.getList('date_time?_list');
+              expect(dateTimeNullList, <DateTime?>[null, ...dateTimeListObject]); 
             },
           );
         },
