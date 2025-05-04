@@ -1,6 +1,6 @@
 import 'package:csm_client/csm_client.dart';
 
-/// [interface] for [EntityI].
+/// {interface} for [EntityI].
 ///
 ///
 /// [T] type of the [EntityI] implementation.

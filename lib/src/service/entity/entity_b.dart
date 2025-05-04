@@ -1,7 +1,7 @@
 import 'package:csm_client/csm_client.dart';
 import 'package:meta/meta.dart';
 
-/// [abstract] class for [EntityB].
+/// {abstract} class for [EntityB].
 ///
 ///
 /// [T] type of the [EntityB] implementation.

@@ -2,16 +2,16 @@ import 'dart:typed_data' show Uint8List;
 
 import 'package:csm_client/csm_client.dart' show DataMap, TracedException;
 
-/// [extension] for [int] type.
+/// {extension} for [int] type.
 ///
 /// Adds custom extension methods to simplfy conversions and calculations with [int] type objects.
 extension IntExtension on int {
-  /// Gets the [int] value as a [Duration] object in [seconds].
+  /// Gets the [int] value as a [Duration] object in {seconds}.
   Duration get secs => Duration(
         seconds: this,
       );
 
-  /// Gets the [int] value as a [Duration] object in [milliseconds].
+  /// Gets the [int] value as a [Duration] object in {milliseconds}.
   Duration get millisecs => Duration(
         milliseconds: this,
       );

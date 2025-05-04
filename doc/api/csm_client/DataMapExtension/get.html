@@ -58,9 +58,10 @@
     <section class="multi-line-signature">
       
 <span class="returntype">T</span>
-<span class="name ">get</span>&lt;<wbr><span class="type-parameter">T</span>&gt;(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="get-param-key"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">key</span>, [</span></li>
+<span class="name ">get</span>&lt;<wbr><span class="type-parameter">T</span>&gt;(<wbr><ol class="parameter-list"> <li><span class="parameter" id="get-param-key"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a></span> <span class="parameter-name">key</span>, [</span></li>
 <li><span class="parameter" id="get-param-defaultValue"><span class="type-annotation">T?</span> <span class="parameter-name">defaultValue</span>, </span></li>
-<li><span class="parameter" id="get-param-caseSensitive"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">caseSensitive</span> = <span class="default-value">false</span></span></li>
+<li><span class="parameter" id="get-param-strict"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">strict</span> = <span class="default-value">false</span>, </span></li>
+<li><span class="parameter" id="get-param-caseSensitive"><span class="type-annotation"><a href="https://api.dart.dev/stable/3.7.2/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">caseSensitive</span> = <span class="default-value">false</span>, </span></li>
 </ol>])
 
       
@@ -71,6 +72,7 @@
   <p>Gets the value of the given key from the <a href="../../csm_client/DataMap.html">DataMap</a>.</p>
 <p><code>T</code> type expected for the value.</p>
 <p><code>key</code> value key at the <a href="../../csm_client/DataMap.html">DataMap</a>.</p>
+<p><code>strict</code> whether an exception should be thrown when the key is not found in the <a href="../../csm_client/DataMap.html">DataMap</a>.</p>
 <p><code>caseSensitive</code> Specifies if the key searching in the object should consider the specific casing of the words.</p>
 </section>
 
@@ -78,19 +80,76 @@
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">T get&lt;T&gt;(String key, [T? defaultValue, bool caseSensitive = false]) {
-  if (!_supported.contains(T)) {
-    throw Exception(&#39;Unsupported: This method doesn\&#39;t allow binding for $T&#39;);
+  <pre class="language-dart"><code class="language-dart">T get&lt;T&gt;(String key, [T? defaultValue, bool strict = false, bool caseSensitive = false]) {
+  final bool isNullable = null is T;
+
+  &#47;&#47;&#47; Getting target [Key] and its [Value].
+  bool keyExist = false;
+  Object? keyValue;
+  if (caseSensitive) {
+    keyExist = containsKey(key);
+    keyValue = keyExist ? this[key] : null;
+  } else {
+    for (MapEntry&lt;String, Object?&gt; mapEntry in entries) {
+      final String uncKey = mapEntry.key.toLowerCase();
+
+      if (uncKey == key.toLowerCase()) {
+        keyExist = true;
+        keyValue = mapEntry.value;
+        break;
+      }
+    }
   }
 
-  if (T == DateTime) return _getDateTime(key, defaultValue as DateTime?, caseSensitive) as T;
-  if (T == String) return _getCastValue&lt;T&gt;(&lt;String&gt;[key], defaultValue ?? &#39;&#39; as T, caseSensitive);
-  if (T == int) return _getInt(key, defaultValue as int?, caseSensitive) as T;
-  if (T == DataMap) return _getCastValue(&lt;String&gt;[key], defaultValue ?? &lt;String, Object?&gt;{} as T, caseSensitive);
-  if (T == List&lt;DataMap&gt;) return _getDataMapList(key, defaultValue as List&lt;DataMap&gt;?, caseSensitive) as T;
-  if (T == bool) return _getCastValue(&lt;String&gt;[key], defaultValue ?? false as T, caseSensitive);
+  &#47;&#47;&#47; Validations when the [key] is not found.
+  if ((!keyExist)) {
+    if (strict) {
+      throw TracedException(&#39;The given key($key) is not present in the current [DataMap] instance&#39;);
+    }
+    if (isNullable) {
+      return (null as T);
+    }
+    if (defaultValue == null &amp;&amp; !isNullable) {
+      throw TracedException(&#39;The given key was not found in the current [DataMap] instance, the expected type is not nullable and the default value given is nullable wrong configuration&#39;);
+    }
 
-  throw Exception(&#39;CriticalException: Couldn\&#39;t found $T convertion implementation and broke up validations&#39;);
+    return defaultValue as T;
+  }
+
+  if (keyValue == null &amp;&amp; isNullable) {
+    return (null as T);
+  }
+
+  &#47;&#47;&#47; Getting the correct type configuration
+  _SupportedTypeConfiguration&lt;T&gt;? typeConfiguration;
+  for (_SupportedTypeConfiguration&lt;Object&gt; typeConfig in _supported) {
+    if (!isNullable) {
+      if (typeConfig.type == T) {
+        typeConfiguration = typeConfig as _SupportedTypeConfiguration&lt;T&gt;;
+        break;
+      }
+
+      continue;
+    }
+
+    String bruteGeneric = T.toString();
+    bruteGeneric = bruteGeneric.substring(0, bruteGeneric.length - 1);
+
+    if (bruteGeneric == typeConfig.type.toString()) {
+      typeConfiguration = typeConfig as _SupportedTypeConfiguration&lt;T&gt;;
+      break;
+    }
+  }
+
+  if (typeConfiguration == null) {
+    throw TracedException(&#39;Unsupported: This method doesn\&#39;t allow binding for $T&#39;);
+  }
+
+  if (keyValue == null) {
+    return typeConfiguration.defaultValue;
+  }
+
+  return typeConfiguration.convertion(keyValue);
 }</code></pre>
 </section>
 
@@ -119,7 +178,7 @@
 <footer>
   <span class="no-break">
     csm_client
-      8.0.0
+      8.0.1
   </span>
   
 </footer>

@@ -1,6 +1,6 @@
 import 'package:csm_client/src/service/response/response_controller.dart';
 
-/// [interface] for [ResponseResolverI].
+/// {interface} for [ResponseResolverI].
 ///
 ///
 /// [T] type of the response data object.

@@ -1,6 +1,6 @@
 import 'package:csm_client/csm_client.dart';
 
-/// [constants] for [EntityKeys].
+/// {constants} class for [EntityKeys].
 ///
 /// Stores shared key access constants for [EntityI] properties.
 final class EntityKeys {

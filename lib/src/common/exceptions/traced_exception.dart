@@ -1,4 +1,4 @@
-/// [exception] class for [TracedException].
+/// {exception} class for [TracedException].
 ///
 /// Defines an exception with [StackTrace] information about where was thrown.
 final class TracedException implements Exception {

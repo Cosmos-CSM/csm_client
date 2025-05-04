@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the description property from the NamedEntityB class, for the Dart programming language.">
-  <title>description property - NamedEntityB class - csm_client library - Dart API</title>
+  <meta name="description" content="API docs for the decode method from the NamedEntityB class, for the Dart programming language.">
+  <title>decode method - NamedEntityB class - csm_client library - Dart API</title>
 
 
   
@@ -27,9 +27,9 @@
     <li><a href="../../index.html">csm_client</a></li>
     <li><a href="../../csm_client">csm_client.dart</a></li>
     <li><a href="../../csm_client/NamedEntityB-class.html">NamedEntityB<span class="signature">&lt;<wbr><span class="type-parameter">T extends EntityI&lt;<wbr><span class="type-parameter">T</span>&gt;</span>&gt;</span></a></li>
-    <li class="self-crumb">description property</li>
+    <li class="self-crumb">decode method</li>
   </ol>
-  <div class="self-name">description</div>
+  <div class="self-name">decode</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -52,39 +52,58 @@
     data-above-sidebar="csm_client&#47;NamedEntityB-class-sidebar.html"
     data-below-sidebar="">
     <div>
-<h1><span class="kind-property">description</span> property 
+<h1><span class="kind-method">decode</span> method 
 </h1></div>
 
-    
-      <section class="multi-line-signature">
-        
+    <section class="multi-line-signature">
+      
   <div>
     <ol class="annotation-list">
         <li>@<a href="https://api.dart.dev/stable/3.7.2/dart-core/override-constant.html">override</a></li>
+        <li>@<a href="https://pub.dev/documentation/meta/1.16.0/meta/mustCallSuper-constant.html">mustCallSuper</a></li>
+        <li>@<a href="https://pub.dev/documentation/meta/1.16.0/meta/mustBeOverridden-constant.html">mustBeOverridden</a></li>
     </ol>
   </div>
-        <a href="https://api.dart.dev/stable/3.7.2/dart-core/String-class.html">String</a>?
-        <span class="name ">description</span>
-        <div class="features"><span class="feature">getter/setter pair</span><span class="feature">override-getter</span></div>
+<span class="returntype">void</span>
+<span class="name ">decode</span>(<wbr><ol class="parameter-list single-line"> <li><span class="parameter" id="decode-param-encode"><span class="type-annotation"><a href="../../csm_client/DataMap.html">DataMap</a></span> <span class="parameter-name">encode</span></span></li>
+</ol>)
 
-      </section>
-      
+      <div class="features"><span class="feature">override</span></div>
+
+    </section>
+    
 <section class="desc markdown">
-  <p><a href="../../csm_client/EntityI-class.html">EntityI</a> description.</p>
-</section>
-
-      
-<section class="summary source-code" id="source">
-  <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">@override
-String? description;</code></pre>
+  <p>Decodes the given <a href="../../csm_client/DataMap.html">DataMap</a> into the current <code>T</code> object, loading the properties bound in the <a href="../../csm_client/DataMap.html">DataMap</a>.</p>
+<p><code>encode</code> object storing properties values to load the current <code>T</code> instance object.</p>
+<p>When implemented from <a href="../../csm_client/NamedEntityB-class.html">NamedEntityB</a>, is not needed to decode the following properties:</p>
+<ul>
+<li><a href="../../csm_client/EntityB/id.html">id</a></li>
+<li><a href="../../csm_client/EntityB/timestamp.html">timestamp</a></li>
+<li><a href="../../csm_client/EntityB/discriminator.html">discriminator</a></li>
+<li><a href="../../csm_client/NamedEntityB/name.html">name</a></li>
+<li><a href="../../csm_client/NamedEntityB/description.html">description</a></li>
+</ul>
+<p>They are being auto decoded from the <a href="../../csm_client/NamedEntityB-class.html">NamedEntityB</a> base behavior.</p>
 </section>
 
 
     
-</div> <!-- /.main-content -->
-<div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
-  <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">@override
+@mustCallSuper
+@mustBeOverridden
+void decode(DataMap encode) {
+  super.decode(encode);
+  name = encode.get(EntityKeys.name);
+  description = encode.get(EntityKeys.description);
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <!-- The search input and breadcrumbs below are only responsively visible at low resolutions. -->
 <header id="header-search-sidebar" class="hidden-l">
   <form class="search-sidebar" role="search">
     <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
@@ -94,13 +113,13 @@ String? description;</code></pre>
     <li><a href="../../index.html">csm_client</a></li>
     <li><a href="../../csm_client">csm_client</a></li>
     <li><a href="../../csm_client/NamedEntityB-class.html">NamedEntityB<span class="signature">&lt;<wbr><span class="type-parameter">T extends EntityI&lt;<wbr><span class="type-parameter">T</span>&gt;</span>&gt;</span></a></li>
-    <li class="self-crumb">description property</li>
+    <li class="self-crumb">decode method</li>
 </ol>
 
-  <h5>NamedEntityB class</h5>
-  <div id="dartdoc-sidebar-left-content"></div>
-</div><!--/.sidebar-offcanvas-->
-<div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <h5>NamedEntityB class</h5>
+    <div id="dartdoc-sidebar-left-content"></div>
+  </div><!--/.sidebar-offcanvas-->
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
 </div><!--/.sidebar-offcanvas-->
 </main>
 <footer>

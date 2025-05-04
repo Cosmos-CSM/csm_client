@@ -79,7 +79,7 @@
   Headers? headers,
 }) {
   address = Uri.includeEndpoint(host, servicePath);
-  client = client ?? Client();
+  this.client = client ?? Client();
   this.headers = &lt;String, String&gt;{};
   this.headers.addAll(_kHeaders);
   if (headers != null) {
@@ -113,7 +113,7 @@
 <footer>
   <span class="no-break">
     csm_client
-      8.0.0
+      8.0.1
   </span>
   
 </footer>

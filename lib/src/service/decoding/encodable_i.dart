@@ -1,8 +1,10 @@
 import 'package:csm_client/csm_client.dart';
 
-/// [Interface] for [Encodable] objects implementations, this interface provides members
-/// to generate [encoded] objects based on an object content.
+/// {interface} for [EncodableI].
+///
+/// Defines a contract for the implementation [Object] be converted to [DataMap] handlable object.
 abstract interface class EncodableI {
-  /// Converts the current [object] into and [encoded] object.
+
+  /// Converts the current [Object] into a [DataMap].
   DataMap encode();
 }

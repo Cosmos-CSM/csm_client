@@ -1,12 +1,12 @@
 import 'package:csm_client/csm_client.dart';
 
-/// [model] class for [EntityInvalidation].
+/// {model} class for [EntityInvalidation].
 /// 
 /// 
 /// [T] type of the [EntityI] invalidation result.
 ///
 /// Defines a storage contract for an invalid property exception got at [EntityI] validation process.
-final class EntityInvalidation<T extends EntityI<T>> {
+final class EntityInvalidation<T extends Object> {
   /// Invalid entity instance.
   final T entity;
 

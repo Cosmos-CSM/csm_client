@@ -58,7 +58,7 @@
 
     
 <section class="desc markdown">
-  <p><code>abstract</code> class for <a href="../csm_client/EntityB-class.html">EntityB</a>.</p>
+  <p>{abstract} class for <a href="../csm_client/EntityB-class.html">EntityB</a>.</p>
 <p><code>T</code> type of the <a href="../csm_client/EntityB-class.html">EntityB</a> implementation.</p>
 <p>Defines a data and behavior base implementation for <a href="../csm_client/EntityB-class.html">EntityB</a> implementations, handles base <a href="../csm_client/EntityB/encode.html">encode</a> / <a href="../csm_client/EntityB/decode.html">decode</a> behavior automatically adding
 the handled properties.</p>
@@ -134,7 +134,7 @@ the handled properties.</p>
 
         <dt id="id" class="property">
   <span class="name"><a href="../csm_client/EntityB/id.html">id</a></span>
-  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.7.2/dart-core/BigInt-class.html">BigInt</a></span>
   
 
 </dt>
@@ -185,7 +185,7 @@ the handled properties.</p>
 
 </dt>
 <dd>
-  Loads the current object content from the given <code>encode</code> object.
+  Decodes the given <a href="../csm_client/DataMap.html">DataMap</a> into the current <code>T</code> object, loading the properties bound in the <a href="../csm_client/DataMap.html">DataMap</a>.
   <div class="features"><span class="feature">override</span></div>
 
 </dd>
@@ -198,7 +198,7 @@ the handled properties.</p>
 
 </dt>
 <dd>
-  Converts the current <code>object</code> into and <code>encoded</code> object.
+  Encodes the current <code>T</code> object into a <a href="../csm_client/DataMap.html">DataMap</a> object.
   <div class="features"><span class="feature">override</span></div>
 
 </dd>
@@ -292,7 +292,7 @@ the handled properties.</p>
 <footer>
   <span class="no-break">
     csm_client
-      8.0.0
+      8.0.1
   </span>
   
 </footer>
