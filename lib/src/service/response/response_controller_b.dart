@@ -1,7 +1,7 @@
 import 'package:csm_client/csm_client.dart';
 import 'package:meta/meta.dart';
 
-/// [abstract] class for [ResponseControllerB] implementations.
+/// {abstract} class for [ResponseControllerB] implementations.
 ///
 /// Defines a base behavior for [ResponseControllerB] implementations that resolves behaviors dependending on the response data.
 abstract class ResponseControllerB implements ResponseControllerI {
@@ -9,7 +9,7 @@ abstract class ResponseControllerB implements ResponseControllerI {
   @protected
   final DataMap data;
 
-  /// [HTTP] request status code, this is a global netwroking standard.
+  /// {HTTP} request status code, this is a global netwroking standard.
   @protected
   final int statusCode;
 

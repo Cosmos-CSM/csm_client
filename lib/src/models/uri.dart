@@ -3,7 +3,7 @@ import 'dart:core' show String, int;
 
 import 'package:csm_client/csm_client.dart' hide Uri;
 
-/// [model] class for [Uri].
+/// {model} class for [Uri].
 ///
 /// Defines contract storage that holds information about a communication address like http addresses, etc.
 final class Uri {

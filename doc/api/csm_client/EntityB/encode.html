@@ -73,7 +73,15 @@
     </section>
     
 <section class="desc markdown">
-  <p>Converts the current <code>object</code> into and <code>encoded</code> object.</p>
+  <p>Encodes the current <code>T</code> object into a <a href="../../csm_client/DataMap.html">DataMap</a> object.</p>
+<p><code>entityObject</code> acumulative delegated <a href="../../csm_client/DataMap.html">DataMap</a> convertion along the different bases implementations.</p>
+<p>When implemented from <a href="../../csm_client/EntityB-class.html">EntityB</a>, is not needed to encode the following properties:</p>
+<ul>
+<li><a href="../../csm_client/EntityB/id.html">id</a></li>
+<li><a href="../../csm_client/EntityB/timestamp.html">timestamp</a></li>
+<li><a href="../../csm_client/EntityB/discriminator.html">discriminator</a></li>
+</ul>
+<p>They are being auto encoded from the <a href="../../csm_client/EntityB-class.html">EntityB</a> base behavior.</p>
 </section>
 
 
@@ -84,10 +92,10 @@
 @mustCallSuper
 @mustBeOverridden
 DataMap encode([DataMap? entityObject]) {
-  DataMap encode = &lt;String, Object&gt;{
+  DataMap encode = &lt;String, Object?&gt;{
     EntityKeys.id: id,
-    EntityKeys.timestamp: timestamp,
     EntityKeys.discriminator: discriminator,
+    EntityKeys.timestamp: timestamp.toIso8601String(),
   };
 
   if (entityObject != null) {
@@ -123,7 +131,7 @@ DataMap encode([DataMap? entityObject]) {
 <footer>
   <span class="no-break">
     csm_client
-      8.0.0
+      8.0.1
   </span>
   
 </footer>

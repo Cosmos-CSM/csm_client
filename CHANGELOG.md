@@ -2,6 +2,35 @@
 
 Changelog history for [csm_client] package.
 
+## 8.0.1 - [04-05-2025]
+
+- Notes:
+
+        1. [TracedException] the property [stackTrace] has gotten changes, now being optional at constructor and by default creating it from [StackTrace.current]. 
+
+        2. Changed [EntityI] interface [id] property type from [int] to [BigInt] to match [Server] side values.
+
+- Fixes:
+
+        1. Added [strict] property for [get] methods at [DataMapExtensions] this to indicate whether the engine
+        should throw an exception when the [key] is no present in the [DataMap].
+
+        2. Reestructured how [get] type methods works internally.
+
+- Dependencies:
+
+    | Package                                 | Previous Version | Current Version |
+    |:----------------------------------------|:----------------:|:---------------:|
+    | http                                    | 1.3.0            | 1.3.0           |
+    | meta                                    | 1.16.0           | 1.16.0          |
+
+- Dev Dependencies:
+
+    | Package                                 | Previous Version | Current Version |
+    |:----------------------------------------|:----------------:|:---------------:|
+    | lints                                   | 5.1.1            | 5.1.1           |
+    | test                                    | 1.25.15          | 1.25.15         |
+
 ## 8.0.0 - [27.04-2025]
 
 - Notes:

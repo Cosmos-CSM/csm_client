@@ -1,7 +1,7 @@
 import 'package:csm_client/csm_client.dart';
 import 'package:meta/meta.dart';
 
-/// [abstract] class for [ServerB] implementations.
+/// {abstract} class for [ServerB] implementations.
 ///
 /// Defines and handles base behavior for [ServerB] implementations like the server host address calculation based on the runtime mode,
 /// etc.
@@ -14,12 +14,12 @@ abstract class ServerB implements ServerI {
   @override
   final Uri? prodHost;
 
-  /// [Http] global headers passed to all requested endpoints
+  /// {HTTP} global headers passed to all requested endpoints
   /// from this [ServerI] object.
   @override
   final Headers? serverHeaders;
 
-  /// Custom [HTTP] communication handler client instance to be used by the [ServerI] implementation.
+  /// Custom {HTTP} communication handler client instance to be used by the [ServerI] implementation.
   ///
   /// Used only for testing/quality purposes, override it under full knowledgement.
   @override
@@ -29,7 +29,7 @@ abstract class ServerB implements ServerI {
   @protected
   late final Uri serverHost;
 
-  /// Generates a [CSMRepository] behavior handler.
+  /// Creates a new [ServerB] instance.
   ServerB(
     this.devHost, {
     this.prodHost,

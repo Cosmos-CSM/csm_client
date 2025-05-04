@@ -6,12 +6,12 @@ import 'dart:io';
 import 'package:csm_client/csm_client.dart';
 import 'package:meta/meta.dart';
 
-/// [abstract] class for [ServiceB].
+/// {abstract} class for [ServiceB].
 ///
 /// Defines a base behavior for a specific service address at a [ServerI] implementation, a [ServiceI] holds the final endpoints to
 /// resolve service calls and operations.
 abstract class ServiceB implements ServiceI {
-  /// (protected) [CSM] authentication header key.
+  /// (protected) {CSM} authentication header key.
   @protected
   static const String authKey = 'CSMAuth';
 
@@ -25,7 +25,7 @@ abstract class ServiceB implements ServiceI {
   @override
   late final Uri address;
 
-  /// [HTTP] communication client.
+  /// {HTTP} communication client.
   @override
   late final Client client;
 

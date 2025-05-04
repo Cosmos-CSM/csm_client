@@ -1,7 +1,7 @@
 import 'package:csm_client/csm_client.dart';
 import 'package:meta/meta.dart';
 
-/// [abstract] class for [EntityB].
+/// {abstract} class for [EntityB].
 ///
 ///
 /// [T] type of the [EntityB] implementation.
@@ -15,7 +15,7 @@ abstract class EntityB<T extends EntityI<T>> implements EntityI<T> {
 
   /// Entity database pointer.
   @override
-  int id = 0;
+  BigInt id = BigInt.from(0);
 
   /// Entity handling timestamp.
   @override

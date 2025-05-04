@@ -1,6 +1,6 @@
 import 'package:csm_client/csm_client.dart';
 
-/// [abstract] class for [ResponseResolverB] implementations.
+/// {abstract} class for [ResponseResolverB] implementations.
 ///
 ///
 /// [T] type of the response data object.

@@ -58,7 +58,7 @@
 
     
 <section class="desc markdown">
-  <p><code>abstract</code> class for <a href="../csm_client/NamedEntityB-class.html">NamedEntityB</a>.</p>
+  <p>{abstract} class for <a href="../csm_client/NamedEntityB-class.html">NamedEntityB</a>.</p>
 <p><code>T</code> type of the <a href="../csm_client/NamedEntityB-class.html">NamedEntityB</a> implementation.</p>
 <p>Defines a base data / behavior implementation for <a href="../csm_client/NamedEntityB-class.html">NamedEntityB</a> implementations, wich are <a href="../csm_client/EntityB-class.html">EntityB</a> implementations with the added properties of <a href="../csm_client/NamedEntityB/name.html">name</a> and <a href="../csm_client/NamedEntityB/description.html">description</a>
 to handle specific business entities identification.</p>
@@ -150,7 +150,7 @@ to handle specific business entities identification.</p>
 
         <dt id="id" class="property inherited">
   <span class="name"><a href="../csm_client/EntityB/id.html">id</a></span>
-  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.7.2/dart-core/int-class.html">int</a></span>
+  <span class="signature">&#8596; <a href="https://api.dart.dev/stable/3.7.2/dart-core/BigInt-class.html">BigInt</a></span>
   
 
 </dt>
@@ -201,33 +201,33 @@ to handle specific business entities identification.</p>
 
     
   <section
-      class="summary offset-anchor inherited"
+      class="summary offset-anchor"
       id="instance-methods">
     <h2>Methods</h2>
     <dl class="callables">
-        <dt id="decode" class="callable inherited">
-  <span class="name"><a href="../csm_client/EntityB/decode.html">decode</a></span><span class="signature">(<wbr><span class="parameter" id="decode-param-encode"><span class="type-annotation"><a href="../csm_client/DataMap.html">DataMap</a></span> <span class="parameter-name">encode</span></span>)
+        <dt id="decode" class="callable">
+  <span class="name"><a href="../csm_client/NamedEntityB/decode.html">decode</a></span><span class="signature">(<wbr><span class="parameter" id="decode-param-encode"><span class="type-annotation"><a href="../csm_client/DataMap.html">DataMap</a></span> <span class="parameter-name">encode</span></span>)
     <span class="returntype parameter">&#8594; void</span>
   </span>
   
 
 </dt>
-<dd class="inherited">
-  Loads the current object content from the given <code>encode</code> object.
-  <div class="features"><span class="feature">inherited</span></div>
+<dd>
+  Decodes the given <a href="../csm_client/DataMap.html">DataMap</a> into the current <code>T</code> object, loading the properties bound in the <a href="../csm_client/DataMap.html">DataMap</a>.
+  <div class="features"><span class="feature">override</span></div>
 
 </dd>
 
-        <dt id="encode" class="callable inherited">
-  <span class="name"><a href="../csm_client/EntityB/encode.html">encode</a></span><span class="signature">(<wbr>[<span class="parameter" id="encode-param-entityObject"><span class="type-annotation"><a href="../csm_client/DataMap.html">DataMap</a>?</span> <span class="parameter-name">entityObject</span></span>])
+        <dt id="encode" class="callable">
+  <span class="name"><a href="../csm_client/NamedEntityB/encode.html">encode</a></span><span class="signature">(<wbr>[<span class="parameter" id="encode-param-entityObject"><span class="type-annotation"><a href="../csm_client/DataMap.html">DataMap</a>?</span> <span class="parameter-name">entityObject</span></span>])
     <span class="returntype parameter">&#8594; <a href="../csm_client/DataMap.html">DataMap</a></span>
   </span>
   
 
 </dt>
-<dd class="inherited">
-  Converts the current <code>object</code> into and <code>encoded</code> object.
-  <div class="features"><span class="feature">inherited</span></div>
+<dd>
+  Encodes the current <code>T</code> object into a <a href="../csm_client/DataMap.html">DataMap</a> object.
+  <div class="features"><span class="feature">override</span></div>
 
 </dd>
 
@@ -320,7 +320,7 @@ to handle specific business entities identification.</p>
 <footer>
   <span class="no-break">
     csm_client
-      8.0.0
+      8.0.1
   </span>
   
 </footer>

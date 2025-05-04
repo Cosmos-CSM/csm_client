@@ -1,6 +1,6 @@
 import 'package:csm_client/csm_client.dart';
 
-/// [interface] for [ServiceI] implementations.
+/// {interface} for [ServiceI] implementations.
 ///
 /// Defines a contract for a specific service address and handling at a [ServerI] implementation, a [ServiceI] holds the final endpoints to
 /// resolve service calls and operations.
@@ -8,7 +8,7 @@ abstract interface class ServiceI {
   /// Service address.
   final Uri address;
 
-  /// [HTTP] communication client.
+  /// {HTTP} communication client.
   final Client client;
 
   /// Global [ServiceI] context headers to be sent at each [ServiceI] endpoint request.
@@ -17,7 +17,7 @@ abstract interface class ServiceI {
   /// Creates a new [ServiceI] instance.
   const ServiceI(this.address, this.client, this.headers);
 
-  /// Performs a [POST] method action via network connection to the specified [endpoint]  at the service [address].
+  /// Performs a {POST} method action via network connection to the specified {endpoint}  at the service [address].
   ///
   ///
   /// [T] type of the object model to be sent in the request body.
@@ -36,7 +36,7 @@ abstract interface class ServiceI {
     Headers? headers,
   });
 
-  /// Performs a [POST] method action via network connection to the specified [endpoint] at the service [address].
+  /// Performs a {POST} method action via network connection to the specified {endpoint} at the service [address].
   ///
   ///
   /// [T] type of the object model list to be sent in the request body.

@@ -1,4 +1,4 @@
-/// [model] class for [PropertyInfo].
+/// {model} class for [PropertyInfo].
 ///
 /// Defines storage contract for data related with the a class property information.
 final class PropertyInfo {

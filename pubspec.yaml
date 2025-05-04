@@ -1,6 +1,6 @@
 name: csm_client
 description: A CSM package to client implementations.
-version: 8.0.0
+version: 8.0.1
 publish_to: none
 repository: https://github.com/RMotive/csm_client
 

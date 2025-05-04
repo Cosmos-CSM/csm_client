@@ -1,7 +1,7 @@
 import 'package:csm_client/csm_client.dart';
 
-/// [class] implementation from [ResponseControllerB].
-///
+/// {implementaiton} class from [ResponseControllerB].
+/// 
 /// Defines final behavior for a [ResponseControllerI], providing a built-in implementation usage.
 final class ResponseController extends ResponseControllerB {
   /// Creates a new [ResponseController] instance.
