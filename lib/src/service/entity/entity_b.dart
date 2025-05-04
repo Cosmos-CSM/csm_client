@@ -41,7 +41,7 @@ abstract class EntityB<T extends EntityI<T>> implements EntityI<T> {
   @mustBeOverridden
   DataMap encode([DataMap? entityObject]) {
     DataMap encode = <String, Object?>{
-      EntityKeys.id: id,
+      EntityKeys.id: id.toString(),
       EntityKeys.discriminator: discriminator,
       EntityKeys.timestamp: timestamp.toIso8601String(),
     };
