@@ -47,6 +47,7 @@ void main() {
 
       final DataMap dataMap = <String, Object?>{
         'date_time': dateTimeObject.toString(),
+        'date_time?': null,
         'data_map_list': dataMapListObject,
         'data_map': dataMapObject,
         'string': stringObject,
@@ -74,6 +75,15 @@ void main() {
             'get: correctly gets [DateTime] values',
             () {
               final DateTime fact = dataMap.get('date_time');
+              expect(dateTimeObject, fact);
+            },
+          );
+
+          /// [get] correctly gets [DateTime?] values.
+          test(
+            'get: correctly gets [DateTime?] values',
+            () {
+              final DateTime? fact = dataMap.get('date_time?');
               expect(dateTimeObject, fact);
             },
           );

@@ -1,6 +1,6 @@
 import 'dart:typed_data' show Uint8List;
 
-import 'package:csm_client/csm_client.dart' show DataMap, DataMapEntry;
+import 'package:csm_client/csm_client.dart' show DataMap, TracedException;
 
 /// [extension] for [int] type.
 ///
@@ -17,115 +17,41 @@ extension IntExtension on int {
       );
 }
 
+///
+final class _SupportedTypeConfiguration<T> {
+  ///
+  late Type type;
+
+  ///
+  final T defaultValue;
+
+  ///
+  T Function(Object value) convertion;
+
+  _SupportedTypeConfiguration(this.defaultValue, this.convertion) {
+    type = T.runtimeType;
+  }
+}
+
 /// [extension] for [DataMap] type.
 ///
 /// Adds custom extension methods to simplify conversions and calculations with [DataMap] type objects.
 extension DataMapExtension on DataMap {
+  
+
+
   /// Stores the current supported [Type]'s to auto cast and run specific sanitization.
-  static const List<Type> _supported = <Type>[
-    String,
-    int,
-    DateTime,
-    bool,
-    DataMap,
-    List<DataMap>,
+  static final List<_SupportedTypeConfiguration<Object>> _supported = <_SupportedTypeConfiguration<Object>>[
+    /// --> [DateTime] supported configurations
+    _SupportedTypeConfiguration<DateTime>(
+      DateTime(0),
+      (Object value) {
+        final String stringValue = value.toString();
+
+        return DateTime.parse(stringValue);
+      },
+    ),
   ];
-
-  /// Gets the value of the first [keyFallbacks] key found at the [DataMap] matched.
-  ///
-  ///
-  /// [keyFallbacks] the available keys to be evaluated with the current [DataMap] keys to get its value.
-  ///
-  /// [caseSensitive] indicates if the keys match must be case sensitive.
-  Object? _getValue(List<String> fallbacks, [bool caseSensitive = false]) {
-    for (DataMapEntry dataEntry in entries) {
-      final String currKey = dataEntry.key;
-      final bool isIn = fallbacks.any(
-        (String keyFallback) {
-          if (!caseSensitive) {
-            return keyFallback == currKey;
-          }
-
-          return ((currKey.toLowerCase()) == (keyFallback.toLowerCase()));
-        },
-      );
-
-      if (isIn) return dataEntry.value;
-    }
-
-    return null;
-  }
-
-  /// Gets the value of the first [keyFallbacks] key found at the [DataMap] matched, and casts it as the given expected type.
-  ///
-  ///
-  /// [TExpected] expected type for the value.
-  ///
-  /// [keyFallbacks] the available keys to be evaluated with the current [DataMap] keys to get its value.
-  ///
-  /// [defaultValue] when the iteration fails returns this value.
-  ///
-  /// [caseSensitive] indicates if the keys match must be case sensitive.
-  TExpected _getCastValue<TExpected>(List<String> keyFallbacks, TExpected defaultValue, [bool caseSensitive = false]) {
-    TExpected? gottenValue;
-    dynamic valueFound = _getValue(keyFallbacks, caseSensitive);
-    gottenValue = (valueFound as TExpected?);
-
-    return gottenValue ?? defaultValue;
-  }
-
-  /// Specified sanitization procedures for [DateTime] supported [Type].
-  /// This is used by [get] implementations and is permorfed when the requested
-  /// value type is [DateTime].
-  ///
-  /// [key] Specified [DataMap] key to trace and bind the property value.
-  ///
-  /// [caseSensitive] Specifies if the key searching in the object should consider the specific casing of the words.
-  DateTime _getDateTime(String key, [DateTime? defaultValue, bool caseSensitive = false]) {
-    String stringValue = _getCastValue(<String>[key], '', caseSensitive);
-
-    if (stringValue.isEmpty) {
-      return defaultValue ?? DateTime(0);
-    }
-
-    return DateTime.parse(stringValue);
-  }
-
-  /// Specified sanitization procedures for [int] supported [Type].
-  /// This is used by [get] implementations and is permorfed when the requested
-  /// value is a [int].
-  ///
-  ///
-  /// [key] Specified [DataMap] key to trace and bind the property value.
-  ///
-  /// [defaultValue] if the resolved value is not found or null will return the given [defaultValue]
-  ///
-  /// [caseSensitive] Specifies if the key searching in the object should consider the specific casing of the words.
-  int _getInt(String key, [int? defaultValue, bool caseSensitive = false]) {
-    int? value = _getCastValue(<String>[key], null, caseSensitive);
-    if (value == null) {
-      if (defaultValue != null) {
-        return defaultValue;
-      }
-      throw 'InvalidType: Unable to convert ${value.runtimeType} into expected $int';
-    }
-    return value;
-  }
-
-  /// Specified sanitization procedures for [List] of [DataMap] supported [Type].
-  /// This is used by [get] implementations and is permorfed when the requested
-  /// value is a [List] of [DataMap].
-  ///
-  ///
-  /// [key] Specified [DataMap] key to trace and bind the property value.
-  ///
-  /// [caseSensitive] Specifies if the key searching in the object should consider the specific casing of the words.
-  List<DataMap> _getDataMapList(String key, [List<DataMap>? defaultListValue, bool caseSensitive = false]) {
-    List<dynamic> bindedList = _getCastValue(<String>[key], defaultListValue ?? <DataMap>[], caseSensitive);
-    List<DataMap> castList = bindedList.cast<DataMap>();
-
-    return castList;
-  }
 
   /// Gets the value of the given key from the [DataMap].
   ///
@@ -134,20 +60,79 @@ extension DataMapExtension on DataMap {
   ///
   /// [key] value key at the [DataMap].
   ///
+  /// [strict] whether an exception should be thrown when the key is not found in the [DataMap].
+  ///
   /// [caseSensitive] Specifies if the key searching in the object should consider the specific casing of the words.
-  T get<T>(String key, [T? defaultValue, bool caseSensitive = false]) {
-    if (!_supported.contains(T)) {
-      throw Exception('Unsupported: This method doesn\'t allow binding for $T');
+  T get<T>(String key, [T? defaultValue, bool strict = false, bool caseSensitive = false]) {
+    final bool isNullable = null is T;
+
+    /// Getting target [Key] and its [Value].
+    late final bool keyExist;
+    late final Object? keyValue;
+    if (caseSensitive) {
+      keyExist = containsKey(key);
+      keyValue = keyExist ? this[key] : null;
+    } else {
+      for (MapEntry<String, Object?> mapEntry in entries) {
+        final String uncKey = mapEntry.key.toLowerCase();
+
+        if (uncKey == key.toLowerCase()) {
+          keyExist = true;
+          keyValue = mapEntry.value;
+          break;
+        }
+      }
     }
 
-    if (T == DateTime) return _getDateTime(key, defaultValue as DateTime?, caseSensitive) as T;
-    if (T == String) return _getCastValue<T>(<String>[key], defaultValue ?? '' as T, caseSensitive);
-    if (T == int) return _getInt(key, defaultValue as int?, caseSensitive) as T;
-    if (T == DataMap) return _getCastValue(<String>[key], defaultValue ?? <String, Object?>{} as T, caseSensitive);
-    if (T == List<DataMap>) return _getDataMapList(key, defaultValue as List<DataMap>?, caseSensitive) as T;
-    if (T == bool) return _getCastValue(<String>[key], defaultValue ?? false as T, caseSensitive);
+    /// Validations when the [key] is not found.
+    if ((!keyExist)) {
+      if (strict) {
+        throw TracedException('The given key($key) is not present in the current [DataMap] instance');
+      }
+      if (isNullable) {
+        return (null as T);
+      }
+      if (defaultValue == null && !isNullable) {
+        throw TracedException('The given key was not found in the current [DataMap] instance, the expected type is not nullable and the default value given is nullable wrong configuration');
+      }
 
-    throw Exception('CriticalException: Couldn\'t found $T convertion implementation and broke up validations');
+      return defaultValue as T;
+    }
+
+    if (keyValue == null && isNullable) {
+      return (null as T);
+    }
+
+    /// Getting the correct type configuration
+    _SupportedTypeConfiguration<T>? typeConfiguration;
+    for (_SupportedTypeConfiguration<Object> typeConfig in _supported) {
+      if (!isNullable) {
+        if (typeConfig.type == T) {
+          typeConfiguration = typeConfig as _SupportedTypeConfiguration<T>;
+          break;
+        }
+
+        continue;
+      }
+
+      String bruteGeneric = T.toString();
+      bruteGeneric = bruteGeneric.substring(bruteGeneric.length - 1, bruteGeneric.length);
+
+      if (bruteGeneric == typeConfig.type.toString()) {
+        typeConfiguration = typeConfig as _SupportedTypeConfiguration<T>;
+        break;
+      }
+    }
+
+    if (typeConfiguration == null) {
+      throw TracedException('Unsupported: This method doesn\'t allow binding for $T');
+    }
+    
+    if (keyValue == null) {
+      return typeConfiguration.defaultValue;
+    } 
+
+    return typeConfiguration.convertion(keyValue);
   }
 
   /// Gets the list value of the given key from the [DataMap].
@@ -159,35 +144,7 @@ extension DataMapExtension on DataMap {
   List<T> getList<T>(String key, [bool caseSensitive = false]) {
     List<T> cacheList = <T>[];
 
-    Object? rawList = _getValue(<String>[key], caseSensitive);
-    try {
-      cacheList = (rawList as List<T>);
-      return cacheList;
-    } catch (x) {
-      List<Object?> castObjectList = rawList as List<Object?>;
-      for (Object? value in castObjectList) {
-        try {
-          T valueAsExpect = value as T;
-          cacheList.add(valueAsExpect);
-        } catch (x) {
-          continue;
-        }
-      }
-      return cacheList;
-    }
-  }
-
-  /// Gets the value of the first matched key from the given [keysFallback].
-  ///
-  /// [T] type expected for the found value.
-  ///
-  /// [key] Specified [DataMap] key to trace and bind the property value.
-  ///
-  /// [defaultValue] Default value to return when the bind fails.
-  ///
-  /// [caseSensitive] wheter the key matching must consider word casing.
-  T fallbackGet<T>(List<String> keysFallback, T defaultValue, [bool caseSensitive = false]) {
-    return _getCastValue(keysFallback, defaultValue);
+    return cacheList;
   }
 }
 

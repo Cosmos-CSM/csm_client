@@ -6,8 +6,10 @@ final class TracedException implements Exception {
   final Object data;
 
   /// Exception stack tracing information.
-  final StackTrace stackTrace;
+  late StackTrace stackTrace;
 
   /// Creates a new [TracedException] instance.
-  const TracedException(this.data, this.stackTrace);
+  TracedException(this.data, [StackTrace? stackTrace]) {
+    stackTrace = StackTrace.current;
+  }
 }
