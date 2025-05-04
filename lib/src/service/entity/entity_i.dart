@@ -8,7 +8,7 @@ import 'package:csm_client/csm_client.dart';
 /// Defines a data and behavior contract for an [EntityI] implementation, wich represents a business object from the customer.
 abstract interface class EntityI<T extends EntityI<T>> implements EncodableI, DecodableI, VariationI {
   /// Entity database pointer.
-  late int id;
+  late BigInt id;
 
   /// Entity handling timestamp.
   late DateTime timestamp;

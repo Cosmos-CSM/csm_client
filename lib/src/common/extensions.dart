@@ -29,7 +29,7 @@ final class _SupportedTypeConfiguration<T> {
   T Function(Object value) convertion;
 
   _SupportedTypeConfiguration(this.defaultValue, this.convertion) {
-    type = T.runtimeType;
+    type = T;
   }
 }
 
@@ -42,11 +42,43 @@ extension DataMapExtension on DataMap {
     /// --> [DateTime] supported configurations
     _SupportedTypeConfiguration<DateTime>(
       DateTime(0),
-      (Object value) {
-        final String stringValue = value.toString();
+      (Object value) => DateTime.parse(value.toString()),
+    ),
 
-        return DateTime.parse(stringValue);
-      },
+    /// --> [String] supported configuration.
+    _SupportedTypeConfiguration<String>(
+      '',
+      (Object value) => value.toString(),
+    ),
+
+    /// --> [int] supported configuration.
+    _SupportedTypeConfiguration<int>(
+      0,
+      (Object value) => int.parse(value.toString()),
+    ),
+
+    /// --> [BigInt] supported configuration.
+    _SupportedTypeConfiguration<BigInt>(
+      BigInt.from(0),
+      (Object value) => BigInt.parse(value.toString()),
+    ),
+
+    /// --> [DataMap] supported configuration.
+    _SupportedTypeConfiguration<DataMap>(
+      <String, Object?>{},
+      (Object value) => value as DataMap,
+    ),
+
+    /// --> [bool] supported configuration.
+    _SupportedTypeConfiguration<bool>(
+      false,
+      (Object value) => bool.parse(value.toString()),
+    ),
+
+    /// --> [Object] supported configuration.
+    _SupportedTypeConfiguration<Object>(
+      Object(),
+      (Object value) => value,
     ),
   ];
 
@@ -64,8 +96,8 @@ extension DataMapExtension on DataMap {
     final bool isNullable = null is T;
 
     /// Getting target [Key] and its [Value].
-    late final bool keyExist;
-    late final Object? keyValue;
+    bool keyExist = false;
+    Object? keyValue;
     if (caseSensitive) {
       keyExist = containsKey(key);
       keyValue = keyExist ? this[key] : null;
@@ -113,7 +145,7 @@ extension DataMapExtension on DataMap {
       }
 
       String bruteGeneric = T.toString();
-      bruteGeneric = bruteGeneric.substring(bruteGeneric.length - 1, bruteGeneric.length);
+      bruteGeneric = bruteGeneric.substring(0, bruteGeneric.length - 1);
 
       if (bruteGeneric == typeConfig.type.toString()) {
         typeConfiguration = typeConfig as _SupportedTypeConfiguration<T>;
@@ -137,9 +169,43 @@ extension DataMapExtension on DataMap {
   ///
   /// [key] Specified [DataMap] key to trace and bind the property value.
   ///
+  /// [strict] whether an exception should be thrown when the key is not found in the [DataMap].
+  ///
   /// [caseSensitive] wheter the key matching must consider word casing.
-  List<T> getList<T>(String key, [bool caseSensitive = false]) {
-    List<T> cacheList = <T>[];
+  List<T> getList<T>(String key, [List<T>? defaultValue, bool strict = false, bool caseSensitive = false]) {
+    late final List<T> cacheList;
+
+    final Object? rawList = get(key, strict, caseSensitive);
+    if (rawList == null) {
+      if (defaultValue != null) {
+        return defaultValue;
+      }
+
+      throw TracedException('Value is null and no defaultValue configured wrong configuration');
+    }
+
+    try {
+      cacheList = (rawList as List<T>);
+      return cacheList;
+    } catch (exception) {
+      late final List<Object?> castedObjectList;
+
+      try {
+        castedObjectList = rawList as List<Object?>;
+      } catch (exception) {
+        throw TracedException('Unsupported data type casting for ($T)');
+      }
+
+      cacheList = <T>[];
+      for (Object? value in castedObjectList) {
+        try {
+          T valueAsExpect = value as T;
+          cacheList.add(valueAsExpect);
+        } catch (x) {
+          continue;
+        }
+      }
+    }
 
     return cacheList;
   }
