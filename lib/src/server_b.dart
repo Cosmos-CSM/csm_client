@@ -1,5 +1,9 @@
 import 'package:csm_client/csm_client.dart';
+import 'package:csm_client/src/_is_prod_vm.dart' if (dart.library.js_interop) '_is_prod_web.dart';
+
 import 'package:meta/meta.dart';
+
+
 
 /// {abstract} class for [ServerB] implementations.
 ///
@@ -36,7 +40,8 @@ abstract class ServerB implements ServerI {
     this.httpClient,
     this.serverHeaders,
   }) {
-    bool isProd = bool.fromEnvironment('dart.vm.product');
+    bool isProd = isProduction;
+    
     if (isProd && prodHost == null) {
       throw 'Runtime [Production] mode with no [Production] host server address configured';
     }
