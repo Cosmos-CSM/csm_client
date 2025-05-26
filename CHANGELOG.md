@@ -2,6 +2,22 @@
 
 Changelog history for [csm_client] package.
 
+## 8.0.2 - [25-05-2025]
+
+- Dependencies:
+
+    | Package                                 | Previous Version | Current Version |
+    |:----------------------------------------|:----------------:|:---------------:|
+    | http                                    | 1.3.0            | 1.3.0           |
+    | meta                                    | 1.16.0           | 1.16.0          |
+
+- Dev Dependencies:
+
+    | Package                                 | Previous Version | Current Version |
+    |:----------------------------------------|:----------------:|:---------------:|
+    | lints                                   | 5.1.1            | 6.0.0           |
+    | test                                    | 1.25.15          | 1.25.15         |
+
 ## 8.0.1 - [04-05-2025]
 
 - Notes:
