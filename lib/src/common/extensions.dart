@@ -1,6 +1,6 @@
 import 'dart:typed_data' show Uint8List;
 
-import 'package:csm_client/csm_client.dart' show DataMap, TracedException;
+import 'package:csm_client/csm_client.dart' show DataMap, EntityI, TracedException;
 
 /// {extension} for [int] type.
 ///
@@ -122,7 +122,8 @@ extension DataMapExtension on DataMap {
         return (null as T);
       }
       if (defaultValue == null && !isNullable) {
-        throw TracedException('The given key was not found in the current [DataMap] instance, the expected type is not nullable and the default value given is nullable wrong configuration');
+        throw TracedException(
+            'The given key was not found in the current [DataMap] instance, the expected type is not nullable and the default value given is nullable wrong configuration');
       }
 
       return defaultValue as T;
@@ -162,6 +163,36 @@ extension DataMapExtension on DataMap {
     }
 
     return typeConfiguration.convertion(keyValue);
+  }
+
+  /// Gets the value of the given key from the [DataMap] as an [EntityI] implementation for direct decoding, since there's impossible to detect whether the generic [T] is nullable
+  /// this method can only return nullable [T].
+  ///
+  ///
+  /// [T] type of the [EntityI] object.
+  ///
+  /// [factory] method to generate a clean [EntityI] object to apply decoding process.
+  ///
+  /// [key] value key at the [DataMap].
+  ///
+  /// [strict] whether an exception should be thrown when the key is not found in the [DataMap].
+  ///
+  /// [caseSensitive] Specifies if the key searching in the object should consider the specific casing of the words.
+  T? getEntity<T extends EntityI<T>>(
+    T Function() factory,
+    String key, [
+    T? defaultValue,
+    bool strict = false,
+    bool caseSensitive = false,
+  ]) {
+    DataMap? dm = get(key, <String, Object>{}, strict, caseSensitive);
+
+    if (dm == null) return null;
+
+    T entity = factory();
+    entity.decode(dm);
+
+    return entity;
   }
 
   /// Gets the list value of the given key from the [DataMap].

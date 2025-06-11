@@ -1,8 +1,35 @@
 import 'package:csm_client/csm_client.dart';
 import 'package:test/test.dart';
 
-void main() {
+/// {entity} class.
+///
+/// Represents an entity class for testing purposes since test scope doesn't have access to external entities.
+final class TestEntity extends EntityB<TestEntity> {
+  /// Testing property value.
+  String propValue = "";
 
+  @override
+  void decode(DataMap encode) {
+    propValue = encode.get("propValue");
+    super.decode(encode);
+  }
+
+  @override
+  DataMap encode([DataMap? entityObject]) {
+    return super.encode(
+      <String, Object?>{
+        "propValue": propValue,
+      },
+    );
+  }
+
+  @override
+  List<EntityInvalidation<TestEntity>> evaluate() {
+    return <EntityInvalidation<TestEntity>>[];
+  }
+}
+
+void main() {
   /// [int] extension tests.
   group(
     'IntExtension',
@@ -43,11 +70,15 @@ void main() {
       final List<DataMap> dataMapListObject = <DataMap>[
         dataMapObject,
       ];
-      
+
       final DateTime dateTimeObject = DateTime.now();
       final List<DateTime> dateTimeListObject = <DateTime>[dateTimeObject];
 
       final String stringObject = 'random_testing_string';
+
+      final String testEntityPropValue = "some_random_value";
+      final TestEntity testEntity = TestEntity();
+      testEntity.propValue = testEntityPropValue;
 
       final DataMap dataMap = <String, Object?>{
         'no_key': null,
@@ -66,6 +97,8 @@ void main() {
         'bool?': null,
         'int': intObject,
         'int?': null,
+        'entity_null': null,
+        'entity': testEntity.encode(),
       };
 
       group(
@@ -168,7 +201,29 @@ void main() {
               expect(dateTimeList, dateTimeListObject);
 
               final List<DateTime?> dateTimeNullList = dataMap.getList('date_time?_list');
-              expect(dateTimeNullList, <DateTime?>[null, ...dateTimeListObject]); 
+              expect(dateTimeNullList, <DateTime?>[null, ...dateTimeListObject]);
+            },
+          );
+        },
+      );
+
+      group(
+        '[getEntity] method tests',
+        () {
+          test(
+            '[getEntity] Correctly gets [EntityI] values',
+            () {
+              TestEntity? testEntityGot = dataMap.getEntity(
+                () => TestEntity(),
+                'entity_null',
+              );
+              expect(testEntityGot, null, reason: 'Got Entity must be null');
+
+              TestEntity? testEntityGot2 = dataMap.getEntity(
+                () => TestEntity(),
+                'entity',
+              );
+              expect(testEntityGot2, isNotNull);
             },
           );
         },
