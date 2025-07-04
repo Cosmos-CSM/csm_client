@@ -66,13 +66,42 @@ abstract class ServiceB implements ServiceI {
   }
 
   @override
-  Future<ResponseController> post<T extends EncodableI>(
-    String act,
+  Future<ResponseControllerI> get(
+    String endpoint, {
+    String? auth,
+    Headers? headers,
+  }) async {
+    core.Uri uri = address.resolve(endpoint);
+    try {
+      headers = _resolveHeaders(headers, auth);
+
+      final Response response = await client.get(
+        uri,
+        headers: headers,
+      );
+      final DataMap resDataMap = jsonDecode(response.body);
+      final int statusCode = response.statusCode;
+
+      return ResponseController(
+        statusCode,
+        data: resDataMap,
+      );
+    } catch (exception, stackTrace) {
+      return ResponseController(
+        500,
+        exception: TracedException(exception, stackTrace),
+      );
+    }
+  }
+
+  @override
+  Future<ResponseControllerI> post<T extends EncodableI>(
+    String endpoint,
     T request, {
     String? auth,
     Headers? headers,
   }) async {
-    core.Uri uri = address.resolve(act);
+    core.Uri uri = address.resolve(endpoint);
     try {
       headers = _resolveHeaders(headers, auth);
 
@@ -98,13 +127,13 @@ abstract class ServiceB implements ServiceI {
   }
 
   @override
-  Future<ResponseController> postList<T extends EncodableI>(
-    String act,
+  Future<ResponseControllerI> postList<T extends EncodableI>(
+    String endpoint,
     List<T> request, {
     String? auth,
     Headers? headers,
   }) async {
-    core.Uri uri = address.resolve(act);
+    core.Uri uri = address.resolve(endpoint);
     try {
       headers = _resolveHeaders(headers, auth);
 

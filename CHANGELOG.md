@@ -2,6 +2,28 @@
 
 Changelog history for [csm_client] package.
 
+## 8.1.0 - [04-07-2025]
+
+- Notes:
+
+        - Added [get] http action method for [ServiceI] implementations.
+
+        - Changed return type for http call actions to [ResponseControllerI] instead of the actual implementation class [ResponseController].
+
+- Dependencies:
+
+    | Package                                 | Previous Version | Current Version |
+    |:----------------------------------------|:----------------:|:---------------:|
+    | http                                    | 1.3.0            | 1.4.0           |
+    | meta                                    | 1.16.0           | 1.17.0          |
+
+- Dev Dependencies:
+
+    | Package                                 | Previous Version | Current Version |
+    |:----------------------------------------|:----------------:|:---------------:|
+    | lints                                   | 6.0.0            | 6.0.0           |
+    | test                                    | 1.25.15          | 1.26.02         |
+
 ## 8.0.2 - [25-05-2025]
 
 - Dependencies:
