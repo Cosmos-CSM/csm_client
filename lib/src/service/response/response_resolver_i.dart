@@ -1,4 +1,4 @@
-import 'package:csm_client/src/service/response/response_controller.dart';
+import 'package:csm_client/csm_client.dart';
 
 /// {interface} for [ResponseResolverI].
 ///
@@ -9,8 +9,8 @@ import 'package:csm_client/src/service/response/response_controller.dart';
 /// and the final client API usage, providing directly the object resolutions.
 abstract interface class ResponseResolverI<T> {
   /// Low level response controller.
-  final ResponseController controller;
+  final ResponseControllerI responseController;
 
   /// Creates a new [ResponseResolverI] instance.
-  const ResponseResolverI(this.controller);
+  const ResponseResolverI(this.responseController);
 }

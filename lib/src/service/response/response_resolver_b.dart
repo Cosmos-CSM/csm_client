@@ -9,8 +9,8 @@ import 'package:csm_client/csm_client.dart';
 abstract class ResponseResolverB<T> implements ResponseResolverI<T> {
   /// Low level response controller.
   @override
-  final ResponseController controller;
+  final ResponseControllerI responseController;
 
   /// Creates a new [ResponseResolverB] instance.
-  const ResponseResolverB(this.controller);
+  const ResponseResolverB(this.responseController);
 }
