@@ -34,11 +34,18 @@ export 'src/service/decoding/encodable_i.dart';
 export 'src/service/decoding/decodable_i.dart';
 export 'src/service/decoding/variation_i.dart';
 
-// --> Exporting [service.entity]
-export 'src/service/entity/entity_i.dart';
+//! --> [Service]
+
+//! --> [Service.Entity]
+
 export 'src/service/entity/entity_b.dart';
 export 'src/service/entity/named_entity_b.dart';
-export 'src/service/entity/named_entity_i.dart';
+export 'src/service/entity/common_entity_b.dart';
+export 'src/service/entity/referenced_entity_b.dart';
+
+//! <-- [Service.Entity]
+
+//! <-- [Service]
 
 // --> Exporting [service.response]
 export 'src/service/response/response_controller_i.dart';

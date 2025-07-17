@@ -2,6 +2,34 @@
 
 Changelog history for [csm_client] package.
 
+## 8.2.0 - [17.07-2025]
+
+- Notes:
+
+        - Added [CommonEntity] representation.
+
+        - Added [ReferencedEntity] representation.
+
+        - Added new entities abstractions properties into [constants] class.
+
+        - Standarized documentation.
+
+- Fixes: N/A
+
+- Dependencies:
+
+    | Package                                 | Previous Version | Current Version |
+    |:----------------------------------------|:----------------:|:---------------:|
+    | http                                    | 1.4.0            | 1.4.0           |
+    | meta                                    | 1.17.0           | 1.17.0          |
+
+- Dev Dependencies:
+
+    | Package                                 | Previous Version | Current Version |
+    |:----------------------------------------|:----------------:|:---------------:|
+    | lints                                   | 6.0.0            | 6.0.0           |
+    | test                                    | 1.26.2           | 1.26.2          |
+
 ## 8.1.0 - [04-07-2025]
 
 - Notes:

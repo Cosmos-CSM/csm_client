@@ -1,13 +1,28 @@
 import 'package:csm_client/csm_client.dart';
 import 'package:meta/meta.dart';
 
-/// {abstract} class for [NamedEntityB].
+
+/// Represents an [EntityI] with [name] and [description] properties
+/// that can help to identify a [EntityI] based on [name] property as this defines them as unique.
 ///
 ///
-/// [T] type of the [NamedEntityB] implementation.
+/// [TEntity] type of the [EntityI] implementation.
+abstract interface class NamedEntityI<TEntity extends EntityI<TEntity>> implements EntityI<TEntity> {
+  /// {Entity} unique name.
+  final String name;
+
+  /// {Entity} description.
+  final String? description;
+
+  /// Creates a new instance.
+  const NamedEntityI(this.name, this.description);
+}
+
+/// Represents an [EntityI] with [name] and [description] properties
+/// that can help to identify a [EntityI] based on [name] property as this defines them as unique.
 ///
-/// Defines a base data / behavior implementation for [NamedEntityB] implementations, wich are [EntityB] implementations with the added properties of [name] and [description]
-/// to handle specific business entities identification.
+///
+/// [TEntity] type of the [EntityI] implementation.
 abstract class NamedEntityB<T extends EntityI<T>> extends EntityB<T> implements NamedEntityI<T> {
   /// [EntityI] unique name.
   @override

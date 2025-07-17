@@ -1,14 +1,34 @@
 import 'package:csm_client/csm_client.dart';
 import 'package:meta/meta.dart';
 
-/// {abstract} class for [EntityB].
+
+/// Represents a tenant business live stored entity model, that usually are objects wich data are grouped by bound that 
+/// instrinsictly defines their own.
 ///
 ///
-/// [T] type of the [EntityB] implementation.
-///
-/// Defines a data and behavior base implementation for [EntityB] implementations, handles base [encode] / [decode] behavior automatically adding
-/// the handled properties.
-abstract class EntityB<T extends EntityI<T>> implements EntityI<T> {
+/// [TEntity] type of the [EntityI] implementation.
+abstract interface class EntityI<TEntity extends EntityI<TEntity>> implements EncodableI, DecodableI, VariationI {
+  /// Entity database pointer.
+  late BigInt id;
+
+  /// Entity handling timestamp.
+  late DateTime timestamp;
+
+  /// Creates a new instance.
+  EntityI();
+
+  /// Client-side evaluation for this set record to check if can be written correctly by the service.
+  ///
+  /// If the result list came empty, means no validation results were thrown (meaning the evaluation is correct).
+  List<EntityInvalidation<TEntity>> evaluate();
+}
+
+/// Represents a tenant business live stored entity model, that usually are objects wich data are grouped by bound that
+/// instrinsictly defines their own.
+/// 
+/// 
+/// [TEntity] type of the [EntityI] implementation.
+abstract class EntityB<TEntity extends EntityI<TEntity>> implements EntityI<TEntity> {
   /// Unique specific object identification.
   @override
   String discriminator = "";
@@ -21,10 +41,10 @@ abstract class EntityB<T extends EntityI<T>> implements EntityI<T> {
   @override
   DateTime timestamp = DateTime.now();
 
-  /// Creates a new [EntityB] instance with default values.
+  /// Creates a new instance.
   EntityB();
 
-  /// Encodes the current [T] object into a [DataMap] object.
+  /// Encodes the current [TEntity] object into a [DataMap] object.
   ///
   ///
   /// [entityObject] acumulative delegated [DataMap] convertion along the different bases implementations.
@@ -53,10 +73,10 @@ abstract class EntityB<T extends EntityI<T>> implements EntityI<T> {
     return encode;
   }
 
-  /// Decodes the given [DataMap] into the current [T] object, loading the properties bound in the [DataMap].
+  /// Decodes the given [DataMap] into the current [TEntity] object, loading the properties bound in the [DataMap].
   ///
   ///
-  /// [encode] object storing properties values to load the current [T] instance object.
+  /// [encode] object storing properties values to load the current [TEntity] instance object.
   ///
   /// When implemented from [EntityB], is not needed to decode the following properties:
   ///
