@@ -10,6 +10,8 @@ Changelog history for [csm_client] package.
 
         - Added [ReferencedEntity] representation.
 
+        - Added [NamedReferencedEntity] representation.
+
         - Added new entities abstractions properties into [constants] class.
 
         - Standarized documentation.

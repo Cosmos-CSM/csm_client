@@ -42,6 +42,7 @@ export 'src/service/entity/entity_b.dart';
 export 'src/service/entity/named_entity_b.dart';
 export 'src/service/entity/common_entity_b.dart';
 export 'src/service/entity/referenced_entity_b.dart';
+export 'src/service/entity/named_referenced_entity_b.dart';
 
 //! <-- [Service.Entity]
 
