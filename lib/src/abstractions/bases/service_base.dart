@@ -6,12 +6,9 @@ import 'dart:io';
 import 'package:csm_client/csm_client.dart';
 import 'package:meta/meta.dart';
 
-/// {abstract} class for [ServiceB].
-///
-/// Defines a base behavior for a specific service address at a [IServer] implementation, a [ServiceI] holds the final endpoints to
-/// resolve service calls and operations.
-abstract class ServiceB implements ServiceI {
-  /// (protected) {CSM} authentication header key.
+/// Represents a server service communication handler.
+abstract class ServiceBase implements IService {
+  /// CSM Framework authentication header key.
   @protected
   static const String authKey = 'CSMAuth';
 
@@ -25,16 +22,16 @@ abstract class ServiceB implements ServiceI {
   @override
   late final Uri address;
 
-  /// {HTTP} communication client.
+  /// Communication client.
   @override
   late final Client client;
 
-  /// Global [ServiceI] context headers to be sent at each [ServiceI] endpoint request.
+  /// Service scoped headers..
   @override
   late final Headers headers;
 
-  /// Generates a new [ServiceB] behavior handler.
-  ServiceB(
+  /// Creates a new instance.
+  ServiceBase(
     Uri host,
     String servicePath, {
     Client? client,

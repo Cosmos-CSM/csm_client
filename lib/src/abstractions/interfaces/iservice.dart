@@ -1,21 +1,22 @@
 import 'package:csm_client/csm_client.dart';
 
-/// {interface} for [ServiceI] implementations.
-///
-/// Defines a contract for a specific service address and handling at a [IServer] implementation, a [ServiceI] holds the final endpoints to
-/// resolve service calls and operations.
-abstract interface class ServiceI {
+/// Represents a server service communication handler.
+abstract interface class IService {
   /// Service address.
   final Uri address;
 
-  /// {HTTP} communication client.
+  /// Communication client.
   final Client client;
 
-  /// Global [ServiceI] context headers to be sent at each [ServiceI] endpoint request.
+  /// Service scoped headers
   final Headers headers;
 
-  /// Creates a new [ServiceI] instance.
-  const ServiceI(this.address, this.client, this.headers);
+  /// Creates a new instance.
+  const IService(
+    this.address,
+    this.client,
+    this.headers,
+  );
 
   /// Perfors a {GET} method http action to the given [endpoint].
   ///

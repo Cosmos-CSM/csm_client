@@ -26,8 +26,8 @@ export 'src/models/property_info.dart';
 export 'src/models/entity_invalidation.dart';
 
 // --> Exporting [service] 
-export 'src/service/service_i.dart';
-export 'src/service/service_b.dart';
+export 'src/abstractions/interfaces/iservice.dart';
+export 'src/abstractions/bases/service_base.dart';
 
 // --> Exporting [service.decoding]
 export 'src/service/decoding/encodable_i.dart';
