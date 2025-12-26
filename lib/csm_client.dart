@@ -8,8 +8,8 @@ export 'package:http/http.dart' show Client, Request, Response;
 export 'package:http/testing.dart' show MockClient, MockClientHandler, MockClientStreamHandler;
 
 // --> Exporting [src] 
-export 'src/server_i.dart';
-export 'src/server_b.dart';
+export 'src/abstractions/interfaces/iserver.dart';
+export 'src/abstractions/bases/server_base.dart';
 
 // --> Exporting [common]
 export 'src/common/enums.dart';

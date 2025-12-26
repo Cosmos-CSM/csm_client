@@ -2,13 +2,8 @@ import 'package:csm_client/csm_client.dart';
 
 import 'package:meta/meta.dart';
 
-
-
-/// {abstract} class for [ServerB] implementations.
-///
-/// Defines and handles base behavior for [ServerB] implementations like the server host address calculation based on the runtime mode,
-/// etc.
-abstract class ServerB implements ServerI {
+/// Represents a server communication handler.
+abstract class ServerBase implements IServer {
   /// Host server address when the runtime is development.
   @override
   final Uri devHost;
@@ -18,29 +13,28 @@ abstract class ServerB implements ServerI {
   final Uri? prodHost;
 
   /// {HTTP} global headers passed to all requested endpoints
-  /// from this [ServerI] object.
+  /// from this [IServer] object.
   @override
   final Headers? serverHeaders;
 
-  /// Custom {HTTP} communication handler client instance to be used by the [ServerI] implementation.
+  /// Custom {HTTP} communication handler client instance to be used by the [IServer] implementation.
   ///
   /// Used only for testing/quality purposes, override it under full knowledgement.
   @override
   final Client? httpClient;
 
-  /// Calculated final [ServerB] host location to communicate with.
+  /// Calculated final [ServerBase] host location to communicate with.
   @protected
   late final Uri serverHost;
 
-  /// Creates a new [ServerB] instance.
-  ServerB(
+  /// Creates a new instance.
+  ServerBase(
     this.devHost, {
     this.prodHost,
     this.httpClient,
     this.serverHeaders,
     required bool isRelease,
   }) {
-    
     if (isRelease && prodHost == null) {
       throw 'Runtime [Production] mode with no [Production] host server address configured';
     }

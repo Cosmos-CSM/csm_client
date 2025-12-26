@@ -8,7 +8,7 @@ import 'package:meta/meta.dart';
 
 /// {abstract} class for [ServiceB].
 ///
-/// Defines a base behavior for a specific service address at a [ServerI] implementation, a [ServiceI] holds the final endpoints to
+/// Defines a base behavior for a specific service address at a [IServer] implementation, a [ServiceI] holds the final endpoints to
 /// resolve service calls and operations.
 abstract class ServiceB implements ServiceI {
   /// (protected) {CSM} authentication header key.

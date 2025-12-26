@@ -2,7 +2,7 @@ import 'package:csm_client/csm_client.dart';
 
 /// {interface} for [ServiceI] implementations.
 ///
-/// Defines a contract for a specific service address and handling at a [ServerI] implementation, a [ServiceI] holds the final endpoints to
+/// Defines a contract for a specific service address and handling at a [IServer] implementation, a [ServiceI] holds the final endpoints to
 /// resolve service calls and operations.
 abstract interface class ServiceI {
   /// Service address.
