@@ -21,9 +21,14 @@ export 'src/common/constants.dart';
 export 'src/common/exceptions/traced_exception.dart';
 
 // --> Exporting [models]
-export 'src/models/uri.dart';
-export 'src/models/property_info.dart';
-export 'src/models/entity_invalidation.dart';
+export 'src/core/models/uri.dart';
+export 'src/core/models/property_info.dart';
+export 'src/core/models/entity_invalidation.dart';
+export 'src/core/models/error_feedback.dart';
+export 'src/core/models/error_info.dart';
+
+export 'src/core/models/frames/failure_frame.dart';
+export 'src/core/models/frames/succcess_frame.dart';
 
 // --> Exporting [service] 
 export 'src/abstractions/interfaces/iservice.dart';
