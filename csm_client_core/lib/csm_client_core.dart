@@ -49,8 +49,8 @@ export 'src/service/entity/named_referenced_entity_b.dart';
 //! <-- [Service]
 
 // --> Exporting [service.response]
-export 'src/service/response/response_controller_i.dart';
-export 'src/service/response/response_controller_b.dart';
+export 'src/service/response/abstractions/interfaces/iresponse_controller.dart';
+export 'src/service/response/abstractions/bases/response_controller_base.dart';
 export 'src/service/response/response_controller.dart';
-export 'src/service/response/response_resolver_i.dart';
-export 'src/service/response/response_resolver_b.dart';
+export 'src/service/response/abstractions/interfaces/iresponse_resolver.dart';
+export 'src/service/response/abstractions/bases/response_resolver_base.dart';

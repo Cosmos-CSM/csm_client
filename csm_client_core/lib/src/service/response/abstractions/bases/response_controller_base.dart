@@ -1,10 +1,10 @@
 import 'package:csm_client_core/csm_client_core.dart';
 import 'package:meta/meta.dart';
 
-/// {abstract} class for [ResponseControllerB] implementations.
+/// {abstract} class for [ResponseControllerBase] implementations.
 ///
-/// Defines a base behavior for [ResponseControllerB] implementations that resolves behaviors dependending on the response data.
-abstract class ResponseControllerB implements ResponseControllerI {
+/// Defines a base behavior for [ResponseControllerBase] implementations that resolves behaviors dependending on the response data.
+abstract class ResponseControllerBase implements IResponseController {
   /// Data object gathered from the response body.
   @protected
   final DataMap data;
@@ -17,8 +17,8 @@ abstract class ResponseControllerB implements ResponseControllerI {
   @protected
   final TracedException? exception;
 
-  /// Generates a [ResponseControllerB] behavior handler.
-  const ResponseControllerB(
+  /// Generates a [ResponseControllerBase] behavior handler.
+  const ResponseControllerBase(
     this.statusCode, {
     this.exception,
     this.data = const <String, Object?>{},
