@@ -11,7 +11,10 @@ environment:
 dependencies:
   # path: ^1.9.0
   csm_client_core:
-    path: ../csm_client_core/
+    git:
+      url: https://github.com/Cosmos-CSM/csm_client
+      path: csm_client_core/
+
 
 dev_dependencies:
   lints: ^6.0.0
