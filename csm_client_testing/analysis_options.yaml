@@ -1,0 +1,12 @@
+include: package:lints/recommended.yaml
+
+formatter: 
+  page_width: 120
+  trailing_commas: preserve
+
+linter:  
+  rules:
+    avoid_print: false
+    directives_ordering: true
+    always_specify_types: true
+    always_use_package_imports: true
