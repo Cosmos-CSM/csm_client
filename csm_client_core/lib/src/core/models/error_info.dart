@@ -1,5 +1,4 @@
 import 'package:csm_client_core/csm_client_core.dart';
-import 'package:csm_client_core/src/core/models/error_feedback.dart';
 
 /// Represents public tradeable internal errors information for public error exposure.
 final class ErrorInfo implements DecodableI {
@@ -16,7 +15,7 @@ final class ErrorInfo implements DecodableI {
   String systemError = '';
 
   /// Error user feedback.
-  List<ErrorFeedback> feedback = <ErrorFeedback>[];
+  List<UserFeedback> feedback = <UserFeedback>[];
 
   /// A custom collection of data, this is custom per exception definition.
   DataMap data = <String, Object?>{};
@@ -34,7 +33,7 @@ final class ErrorInfo implements DecodableI {
     final List<DataMap> feedbackDataMap = encode.getList('feedback');
     feedback = feedbackDataMap.map(
       (Map<String, Object?> feedbackDataMapItem) {
-        final ErrorFeedback feedbackItem = ErrorFeedback();
+        final UserFeedback feedbackItem = UserFeedback();
         feedbackItem.decode(feedbackDataMapItem);
         return feedbackItem;
       },

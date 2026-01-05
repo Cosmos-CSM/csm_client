@@ -1,5 +1,5 @@
 /// Represents error feedback severities.
-enum ErrorFeedbackSeverities {
+enum UserFeedbackSeverities {
   /// when the feedback is just informative.
   info,
 

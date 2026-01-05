@@ -1,5 +1,4 @@
 import 'package:csm_client_core/csm_client_core.dart';
-import 'package:csm_client_core/src/core/models/error_info.dart';
 
 /// Data {class} implementation for an [FailureFrame].
 ///
