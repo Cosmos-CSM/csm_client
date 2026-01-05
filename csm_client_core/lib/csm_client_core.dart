@@ -11,6 +11,8 @@ export 'package:http/testing.dart' show MockClient, MockClientHandler, MockClien
 export 'src/abstractions/interfaces/iserver.dart';
 export 'src/abstractions/bases/server_base.dart';
 
+export 'src/core/user_feedback_severities.dart';
+
 // --> Exporting [common]
 export 'src/common/enums.dart';
 export 'src/common/typedefs.dart';
