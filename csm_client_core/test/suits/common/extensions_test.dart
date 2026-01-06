@@ -4,7 +4,7 @@ import 'package:test/test.dart';
 /// {entity} class.
 ///
 /// Represents an entity class for testing purposes since test scope doesn't have access to external entities.
-final class TestEntity extends EntityB<TestEntity> {
+final class TestEntity extends EntityBase<TestEntity> {
   /// Testing property value.
   String propValue = "";
 

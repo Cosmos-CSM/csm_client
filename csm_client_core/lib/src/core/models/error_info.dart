@@ -1,7 +1,7 @@
 import 'package:csm_client_core/csm_client_core.dart';
 
 /// Represents public tradeable internal errors information for public error exposure.
-final class ErrorInfo implements DecodableI {
+final class ErrorInfo implements IDecodable {
   /// Error message.
   String message = '';
 

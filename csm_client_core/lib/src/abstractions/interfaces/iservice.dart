@@ -45,7 +45,7 @@ abstract interface class IService {
   /// [auth] (optional) custom authentication string token.
   ///
   /// [headers] (optional) headers to be sent at [endpoint] request level.
-  Future<IResponseController> post<T extends EncodableI>(
+  Future<IResponseController> post<T extends IEncodable>(
     String endpoint,
     T body, {
     String? auth,
@@ -65,7 +65,7 @@ abstract interface class IService {
   /// [auth] (optional) custom authentication string token.
   ///
   /// [headers] (optional) headers to be sent at [endpoint] request level.
-  Future<IResponseController> postList<T extends EncodableI>(
+  Future<IResponseController> postList<T extends IEncodable>(
     String endpoint,
     List<T> request, {
     String? auth,

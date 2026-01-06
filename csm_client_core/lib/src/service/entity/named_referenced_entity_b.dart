@@ -6,8 +6,7 @@ import 'package:meta/meta.dart';
 ///
 ///
 /// [TEntity] type of the [EntityI] implementation.
-abstract interface class NamedReferencedEntityI<TEntity extends EntityI<TEntity>>
-    implements EntityI<TEntity>, ReferencedEntityI<TEntity> {
+abstract interface class NamedReferencedEntityI<TEntity extends IEntity<TEntity>> implements IEntity<TEntity>, ReferencedEntityI<TEntity> {
   /// {Entity} unique name.
   final String name;
 
@@ -23,7 +22,7 @@ abstract interface class NamedReferencedEntityI<TEntity extends EntityI<TEntity>
 ///
 ///
 /// [TEntity] type of the [EntityI] implementation.
-abstract class NamedReferencedEntityB<T extends EntityI<T>> extends EntityB<T> implements NamedReferencedEntityI<T> {
+abstract class NamedReferencedEntityB<T extends IEntity<T>> extends EntityBase<T> implements NamedReferencedEntityI<T> {
   /// [EntityI] unique name.
   @override
   String name = "";

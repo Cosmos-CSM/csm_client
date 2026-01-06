@@ -4,7 +4,7 @@ import 'package:csm_client_core/csm_client_core.dart';
 ///
 ///
 /// Defines a data constract for a frame that represents a [ServerI] implementation failed response with [ExceptionInfo].
-final class FailureFrame implements DecodableI {
+final class FailureFrame implements IDecodable {
   /// Unique server transaction identification.
   String id = '';
 

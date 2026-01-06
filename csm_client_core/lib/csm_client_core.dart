@@ -7,6 +7,11 @@ library;
 export 'package:http/http.dart' show Client, Request, Response;
 export 'package:http/testing.dart' show MockClient, MockClientHandler, MockClientStreamHandler;
 
+//! --> Exporting modules
+
+export 'src/abstractions/abstractions_module.dart';
+
+
 // --> Exporting [src] 
 export 'src/abstractions/interfaces/iserver.dart';
 export 'src/abstractions/bases/server_base.dart';
@@ -37,15 +42,15 @@ export 'src/abstractions/interfaces/iservice.dart';
 export 'src/abstractions/bases/service_base.dart';
 
 // --> Exporting [service.decoding]
-export 'src/service/decoding/encodable_i.dart';
-export 'src/service/decoding/decodable_i.dart';
-export 'src/service/decoding/variation_i.dart';
+export 'src/abstractions/interfaces/iencodable.dart';
+export 'src/abstractions/interfaces/idecodable.dart';
+export 'src/abstractions/interfaces/ivariation.dart';
 
 //! --> [Service]
 
 //! --> [Service.Entity]
 
-export 'src/service/entity/entity_b.dart';
+export 'src/abstractions/bases/entity_base.dart';
 export 'src/service/entity/named_entity_b.dart';
 export 'src/service/entity/common_entity_b.dart';
 export 'src/service/entity/referenced_entity_b.dart';

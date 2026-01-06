@@ -2,7 +2,7 @@ import 'package:csm_client_core/csm_client_core.dart';
 import 'package:csm_client_core/src/core/user_feedback_severities.dart';
 
 /// Represents a server side error displayable feedback data.
-final class UserFeedback implements DecodableI {
+final class UserFeedback implements IDecodable {
   /// Feedback message.
   String message = '';
 

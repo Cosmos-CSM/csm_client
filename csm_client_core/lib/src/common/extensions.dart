@@ -1,6 +1,6 @@
 import 'dart:typed_data' show Uint8List;
 
-import 'package:csm_client_core/csm_client_core.dart' show DataMap, EntityI, TracedException;
+import 'package:csm_client_core/csm_client_core.dart' show DataMap, IEntity, TracedException;
 
 /// {extension} for [int] type.
 ///
@@ -178,7 +178,7 @@ extension DataMapExtension on DataMap {
   /// [strict] whether an exception should be thrown when the key is not found in the [DataMap].
   ///
   /// [caseSensitive] Specifies if the key searching in the object should consider the specific casing of the words.
-  T? getEntity<T extends EntityI<T>>(
+  T? getEntity<T extends IEntity<T>>(
     T Function() factory,
     String key, [
     T? defaultValue,

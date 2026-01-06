@@ -1,9 +1,7 @@
 import 'package:csm_client_core/csm_client_core.dart';
 
-/// {interface} for [DecodableI].
-///
-/// Defines contract for an [Object] able to be loaded from [DataMap] object.
-abstract interface class DecodableI {
+/// Represents a decodable object.
+abstract interface class IDecodable {
   /// Loads the current object content from the given [encode] object.
   ///
   ///

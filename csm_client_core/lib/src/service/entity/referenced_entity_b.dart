@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 ///
 ///
 /// [TEntity] type of the [EntityI] implementation.
-abstract interface class ReferencedEntityI<TEntity extends EntityI<TEntity>> implements EntityI<TEntity> {
+abstract interface class ReferencedEntityI<TEntity extends IEntity<TEntity>> implements IEntity<TEntity> {
   /// Unique reference value.
   ///
   /// It's lenght must be strict 8.
@@ -21,7 +21,7 @@ abstract interface class ReferencedEntityI<TEntity extends EntityI<TEntity>> imp
 ///
 ///
 /// [TEntity] type of the [EntityI] implementation.
-abstract class ReferencedEntityB<T extends EntityI<T>> extends EntityB<T> implements ReferencedEntityI<T> {
+abstract class ReferencedEntityB<T extends IEntity<T>> extends EntityBase<T> implements ReferencedEntityI<T> {
   /// Unique reference value.
   ///
   /// It's lenght must be strict 8.

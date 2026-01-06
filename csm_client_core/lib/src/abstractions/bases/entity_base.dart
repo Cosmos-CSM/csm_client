@@ -1,33 +1,10 @@
 import 'package:csm_client_core/csm_client_core.dart';
 import 'package:meta/meta.dart';
 
-/// Represents a tenant business live stored entity model, that usually are objects wich data are grouped by bound that
-/// instrinsictly defines their own.
+/// Represents a business entity.
 ///
-///
-/// [TEntity] type of the [EntityI] implementation.
-abstract interface class EntityI<TEntity extends EntityI<TEntity>> implements EncodableI, DecodableI, VariationI {
-  /// Entity database pointer.
-  late BigInt id;
-
-  /// Entity handling timestamp.
-  late DateTime timestamp;
-
-  /// Creates a new instance.
-  EntityI();
-
-  /// Client-side evaluation for this set record to check if can be written correctly by the service.
-  ///
-  /// If the result list came empty, means no validation results were thrown (meaning the evaluation is correct).
-  List<EntityInvalidation<TEntity>> evaluate();
-}
-
-/// Represents a tenant business live stored entity model, that usually are objects wich data are grouped by bound that
-/// instrinsictly defines their own.
-///
-///
-/// [TEntity] type of the [EntityI] implementation.
-abstract class EntityB<TEntity extends EntityI<TEntity>> implements EntityI<TEntity> {
+/// [TEntity] - type of the entity, used for inferred operation types.
+abstract class EntityBase<TEntity extends IEntity<TEntity>> implements IEntity<TEntity> {
   /// Unique specific object identification.
   @override
   String discriminator = "";
@@ -41,20 +18,20 @@ abstract class EntityB<TEntity extends EntityI<TEntity>> implements EntityI<TEnt
   DateTime timestamp = DateTime.now();
 
   /// Creates a new instance.
-  EntityB();
+  EntityBase();
 
   /// Encodes the current [TEntity] object into a [DataMap] object.
   ///
   ///
   /// [entityObject] acumulative delegated [DataMap] convertion along the different bases implementations.
   ///
-  /// When implemented from [EntityB], is not needed to encode the following properties:
+  /// When implemented from [EntityBase], is not needed to encode the following properties:
   ///
   /// - [id]
   /// - [timestamp]
   /// - [discriminator]
   ///
-  /// They are being auto encoded from the [EntityB] base behavior.
+  /// They are being auto encoded from the [EntityBase] base behavior.
   @override
   @mustCallSuper
   @mustBeOverridden
@@ -77,13 +54,13 @@ abstract class EntityB<TEntity extends EntityI<TEntity>> implements EntityI<TEnt
   ///
   /// [encode] object storing properties values to load the current [TEntity] instance object.
   ///
-  /// When implemented from [EntityB], is not needed to decode the following properties:
+  /// When implemented from [EntityBase], is not needed to decode the following properties:
   ///
   /// - [id]
   /// - [timestamp]
   /// - [discriminator]
   ///
-  /// They are being auto decoded from the [EntityB] base behavior.
+  /// They are being auto decoded from the [EntityBase] base behavior.
   @override
   @mustCallSuper
   @mustBeOverridden

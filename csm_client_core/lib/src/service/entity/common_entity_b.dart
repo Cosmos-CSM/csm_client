@@ -8,8 +8,7 @@ import 'package:meta/meta.dart';
 /// [TInternal] Type of the [EntityI] that represents the internal data model.
 ///
 /// [TExternal] type of the [EntityI] that represents the external data model.
-abstract interface class CommonEntityI<TEntity extends EntityI<TEntity>, TInternal extends EntityI<TInternal>,
-    TExternal extends EntityI<TExternal>> implements EntityI<TEntity> {
+abstract interface class CommonEntityI<TEntity extends IEntity<TEntity>, TInternal extends IEntity<TInternal>, TExternal extends IEntity<TExternal>> implements IEntity<TEntity> {
   /// [TInternal] data.
   final TInternal? internal;
 
@@ -27,8 +26,7 @@ abstract interface class CommonEntityI<TEntity extends EntityI<TEntity>, TIntern
 /// [TInternal] Type of the [EntityI] that represents the internal data model.
 ///
 /// [TExternal] type of the [EntityI] that represents the external data model.
-abstract class CommonEntityB<TEntity extends EntityI<TEntity>, TInternal extends EntityI<TInternal>,
-        TExternal extends EntityI<TExternal>> extends EntityB<TEntity>
+abstract class CommonEntityB<TEntity extends IEntity<TEntity>, TInternal extends IEntity<TInternal>, TExternal extends IEntity<TExternal>> extends EntityBase<TEntity>
     implements CommonEntityI<TEntity, TInternal, TExternal> {
   /// [TInternal] data.
   @override

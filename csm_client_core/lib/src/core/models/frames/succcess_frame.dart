@@ -6,14 +6,14 @@ import 'package:csm_client_core/csm_client_core.dart';
 /// [T] type of the response body data object.
 ///
 /// Defines a data constract for a frame that represents a [ServerI] implementation successfuly response with interest data.
-final class SuccessFrame<T extends DecodableI?> implements DecodableI {
+final class SuccessFrame<T extends IDecodable?> implements IDecodable {
   /// Unique operation identifier.
   String id = '';
 
   /// Response data object.
   late T content;
 
-  /// Internal [T] builder for [DecodableI] purposes.
+  /// Internal [T] builder for [IDecodable] purposes.
   final T Function() _estelaBuilder;
 
   /// Creates a new [SuccessFrame] instance.

@@ -92,7 +92,7 @@ abstract class ServiceBase implements IService {
   }
 
   @override
-  Future<IResponseController> post<T extends EncodableI>(
+  Future<IResponseController> post<T extends IEncodable>(
     String endpoint,
     T request, {
     String? auth,
@@ -124,7 +124,7 @@ abstract class ServiceBase implements IService {
   }
 
   @override
-  Future<IResponseController> postList<T extends EncodableI>(
+  Future<IResponseController> postList<T extends IEncodable>(
     String endpoint,
     List<T> request, {
     String? auth,
