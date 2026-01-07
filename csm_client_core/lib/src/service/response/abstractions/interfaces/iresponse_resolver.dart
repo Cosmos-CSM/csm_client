@@ -33,8 +33,8 @@ abstract interface class IResponseResolver<TResponseData extends IDecodable?> {
   ///
   /// [onFinally] callback invoked after any [ResponseController] result and callback invokation.
   void resolve({
-    TResponseData Function() factory,
-    void Function(SuccessFrame<TResponseData> success) onSuccess,
+    required TResponseData Function() factory,
+    required void Function(SuccessFrame<TResponseData> success) onSuccess,
     required void Function(FailureFrame failure, int status) onFailure,
     required void Function(TracedException exception) onException,
     required void Function() onConnectionFailure,
