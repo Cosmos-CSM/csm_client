@@ -7,7 +7,7 @@ import 'package:csm_client_core/csm_client_core.dart';
 ///
 /// Defines a behavior contract for a [IResponseResolver] implementation, wich handles the data convertion between the service request response
 /// and the final client API usage, providing directly the object resolutions.
-abstract interface class IResponseResolver<TResponseData extends IDecodable> {
+abstract interface class IResponseResolver<TResponseData extends IDecodable?> {
   /// Low level response controller.
   final IResponseController responseController;
 
