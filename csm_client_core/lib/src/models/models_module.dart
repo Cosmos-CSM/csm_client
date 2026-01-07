@@ -13,4 +13,7 @@ export 'outputs/view_output.dart';
 //! --> Exporting 
 export 'view_ordering.dart';
 export 'pagination_data.dart';
-export 'view_filter_date.dart';
+
+export 'view_filters/view_date_filter.dart';
+export 'view_filters/view_logical_filter.dart';
+export 'view_filters/view_property_filter.dart';
