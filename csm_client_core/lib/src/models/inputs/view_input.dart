@@ -1,5 +1,4 @@
 import 'package:csm_client_core/csm_client_core.dart';
-import 'package:csm_client_core/src/models/abstractions/interfaces/iview_filter_node.dart';
 import 'package:csm_client_core/src/models/view_ordering.dart';
 
 /// {model} class for [ViewInput].
