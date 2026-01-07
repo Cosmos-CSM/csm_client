@@ -9,6 +9,7 @@ export 'package:http/testing.dart' show MockClient, MockClientHandler, MockClien
 
 //! --> Exporting modules
 export 'src/core/core_module.dart';
+export 'src/models/models_module.dart';
 export 'src/abstractions/abstractions_module.dart';
 
 // --> Exporting [common]
