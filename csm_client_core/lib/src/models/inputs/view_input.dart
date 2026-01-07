@@ -1,5 +1,5 @@
 import 'package:csm_client_core/csm_client_core.dart';
-import 'package:csm_client_core/src/models/abstractions/interfaces/iview_filter.dart';
+import 'package:csm_client_core/src/models/abstractions/interfaces/iview_filter_node.dart';
 import 'package:csm_client_core/src/models/view_ordering.dart';
 
 /// {model} class for [ViewInput].
@@ -22,7 +22,7 @@ final class ViewInput<T extends IEntity<T>> implements IEncodable {
   int page = 0;
 
   /// Filtering instructions for [EntityI] properties matching delegates. They are applied by the given [ViewFilterNodeI.order] property.
-  List<IViewFilter<T>> filters = <IViewFilter<T>>[];
+  List<IViewFilterNode<T>> filters = <IViewFilterNode<T>>[];
 
   /// Ordering instructions per [EntityI] property, they are applied by the collection order and are not override, meaning
   /// all orderings are applied at the same time.
