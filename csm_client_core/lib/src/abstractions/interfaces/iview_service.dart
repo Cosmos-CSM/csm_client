@@ -1,6 +1,4 @@
 import 'package:csm_client_core/csm_client_core.dart';
-import 'package:csm_client_core/src/models/inputs/view_input.dart';
-import 'package:csm_client_core/src/models/outputs/view_output.dart';
 
 /// Represents a { View } operations provider service.
 abstract interface class IViewService<TEntity extends IEntity<TEntity>, TResponseResolver extends IResponseResolver<ViewOutput<TEntity>>> {
