@@ -123,7 +123,7 @@ extension DataMapExtension on DataMap {
       }
       if (defaultValue == null && !isNullable) {
         throw TracedException(
-            'The given key was not found in the current [DataMap] instance, the expected type is not nullable and the default value given is nullable wrong configuration');
+            'The given key ($key) was not found in the current [DataMap] instance, the expected type is not nullable and the default value given is nullable wrong configuration');
       }
 
       return defaultValue as T;
