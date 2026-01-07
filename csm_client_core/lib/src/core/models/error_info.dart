@@ -11,9 +11,6 @@ final class ErrorInfo implements IDecodable {
   /// Error event trigger.
   int event = 0;
 
-  /// A system reflected type with message from the exception thrown at server context.
-  String systemError = '';
-
   /// Error user feedback.
   List<UserFeedback> feedback = <UserFeedback>[];
 
@@ -27,7 +24,6 @@ final class ErrorInfo implements IDecodable {
   void decode(DataMap encode) {
     event = encode.get('event');
     advise = encode.get('advise');
-    systemError = encode.get('systemError');
     data = encode.get('data');
 
     final List<DataMap> feedbackDataMap = encode.getList('feedback');
