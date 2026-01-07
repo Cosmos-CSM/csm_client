@@ -3,10 +3,10 @@ import 'package:csm_client_core/csm_client_core.dart';
 /// {abstract} class for [ResponseResolverBase] implementations.
 ///
 ///
-/// [T] type of the response data object.
+/// [TResponseData] type of the response data object.
 ///
 /// Defines base behavior for [IResponseResolver] implementations, provides base built-in interactions for response resolution.
-abstract class ResponseResolverBase<T> implements IResponseResolver<T> {
+abstract class ResponseResolverBase<TResponseData extends IDecodable> implements IResponseResolver<TResponseData> {
   /// Low level response controller.
   @override
   final IResponseController responseController;

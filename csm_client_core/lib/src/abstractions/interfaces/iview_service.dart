@@ -11,5 +11,5 @@ abstract interface class IViewService<TEntity extends IEntity<TEntity>, TRespons
   /// [options] how the method will build the {View} result, are instructions for the paging, ordering, etc.
   ///
   /// [auth] server authorization token.
-  TResponseResolver view(ViewInput<TEntity> input, String auth);
+  Future<TResponseResolver> view(ViewInput<TEntity> input, String auth);
 }
