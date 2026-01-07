@@ -10,3 +10,4 @@ export 'interfaces/ientity.dart';
 export 'interfaces/iserver.dart';
 export 'interfaces/iservice.dart';
 export 'interfaces/iencodable.dart';
+export 'interfaces/iview_service.dart';

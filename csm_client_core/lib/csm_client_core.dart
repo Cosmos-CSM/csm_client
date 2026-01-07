@@ -8,15 +8,8 @@ export 'package:http/http.dart' show Client, Request, Response;
 export 'package:http/testing.dart' show MockClient, MockClientHandler, MockClientStreamHandler;
 
 //! --> Exporting modules
-
+export 'src/core/core_module.dart';
 export 'src/abstractions/abstractions_module.dart';
-
-
-// --> Exporting [src] 
-export 'src/abstractions/interfaces/iserver.dart';
-export 'src/abstractions/bases/server_base.dart';
-
-export 'src/core/user_feedback_severities.dart';
 
 // --> Exporting [common]
 export 'src/common/enums.dart';
