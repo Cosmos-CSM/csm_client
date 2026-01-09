@@ -34,7 +34,6 @@ abstract class EntityBase<TEntity extends IEntity<TEntity>> implements IEntity<T
   /// They are being auto encoded from the [EntityBase] base behavior.
   @override
   @mustCallSuper
-  @mustBeOverridden
   DataMap encode([DataMap? entityObject]) {
     DataMap encode = <String, Object?>{
       CorePropertiesConsts.id: id.toString(),
@@ -63,7 +62,6 @@ abstract class EntityBase<TEntity extends IEntity<TEntity>> implements IEntity<T
   /// They are being auto decoded from the [EntityBase] base behavior.
   @override
   @mustCallSuper
-  @mustBeOverridden
   void decode(DataMap encode) {
     id = encode.get(CorePropertiesConsts.id);
     timestamp = encode.get(CorePropertiesConsts.timestamp);

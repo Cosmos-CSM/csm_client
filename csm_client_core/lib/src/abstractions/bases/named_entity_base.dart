@@ -31,7 +31,6 @@ abstract class NamedEntityBase<TEntity extends IEntity<TEntity>> extends EntityB
   /// They are being auto encoded from the [NamedEntityBase] base behavior.
   @override
   @mustCallSuper
-  @mustBeOverridden
   DataMap encode([DataMap? entityObject]) {
     DataMap encode = <String, Object?>{
       CorePropertiesConsts.name: name,
@@ -61,7 +60,6 @@ abstract class NamedEntityBase<TEntity extends IEntity<TEntity>> extends EntityB
   /// They are being auto decoded from the [NamedEntityBase] base behavior.
   @override
   @mustCallSuper
-  @mustBeOverridden
   void decode(DataMap encode) {
     super.decode(encode);
     name = encode.get(CorePropertiesConsts.name);
