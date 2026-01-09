@@ -1,5 +1,4 @@
 import 'package:csm_client_core/csm_client_core.dart';
-import 'package:csm_client_core/src/common/constants/core_entity_invalidations_consts.dart';
 import 'package:meta/meta.dart';
 
 /// Represents an [IEntity] with [name] and [description] properties
