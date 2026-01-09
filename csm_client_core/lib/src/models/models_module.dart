@@ -9,10 +9,12 @@ export 'inputs/view_input.dart';
 
 //! --> Exporting [outputs]
 export 'outputs/view_output.dart';
+export 'outputs/batch_operation_output.dart';
 
 //! --> Exporting 
 export 'view_ordering.dart';
 export 'pagination_data.dart';
+export 'entity_operation_error.dart';
 
 export 'view_filters/view_date_filter.dart';
 export 'view_filters/view_logical_filter.dart';

@@ -1,5 +1,6 @@
 //! --> Module exports.
 export 'iactivable_entity.dart';
+export 'icreate_service.dart';
 export 'idecodable.dart';
 export 'iencodable.dart';
 export 'ientity.dart';
