@@ -24,8 +24,8 @@ final class TestEntity extends EntityBase<TestEntity> {
   }
 
   @override
-  List<EntityInvalidation<TestEntity>> evaluate() {
-    return <EntityInvalidation<TestEntity>>[];
+  List<EntityErrors<TestEntity>> evaluate() {
+    return <EntityErrors<TestEntity>>[];
   }
 }
 

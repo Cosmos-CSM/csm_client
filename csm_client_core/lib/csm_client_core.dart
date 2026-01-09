@@ -24,7 +24,7 @@ export 'src/common/exceptions/traced_exception.dart';
 // --> Exporting [models]
 export 'src/core/models/uri.dart';
 export 'src/core/models/property_info.dart';
-export 'src/core/models/entity_invalidation.dart';
+export 'src/core/models/entity_error.dart';
 export 'src/core/models/user_feedback.dart';
 export 'src/core/models/error_info.dart';
 

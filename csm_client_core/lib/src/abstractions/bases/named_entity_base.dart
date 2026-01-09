@@ -1,4 +1,5 @@
 import 'package:csm_client_core/csm_client_core.dart';
+import 'package:csm_client_core/src/common/constants/core_entity_invalidations_consts.dart';
 import 'package:meta/meta.dart';
 
 /// Represents an [IEntity] with [name] and [description] properties
@@ -64,5 +65,30 @@ abstract class NamedEntityBase<TEntity extends IEntity<TEntity>> extends EntityB
     super.decode(encode);
     name = encode.get(CorePropertiesConsts.name);
     description = encode.get(CorePropertiesConsts.description);
+  }
+
+  @override
+  @mustCallSuper
+  List<EntityErrors<TEntity>> evaluate(List<EntityErrors<TEntity>> errors) {
+    if (errors.isEmpty) {
+      errors = <EntityErrors<TEntity>>[];
+    }
+
+    if (name.isEmpty) {
+      errors.add(
+        EntityErrors<TEntity>(
+          this as TEntity,
+          PropertyInfo(
+            CorePropertiesConsts.name,
+            String,
+            name,
+          ),
+          CoreEntityErrorReasonsConsts.cantBeEmpty,
+          'Can\'t be empty',
+        ),
+      );
+    }
+
+    return errors;
   }
 }

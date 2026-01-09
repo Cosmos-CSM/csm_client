@@ -16,5 +16,5 @@ abstract interface class IEntity<TEntity extends IEntity<TEntity>> implements IE
   /// Client-side evaluation for this set record to check if can be written correctly by the service.
   ///
   /// If the result list came empty, means no validation results were thrown (meaning the evaluation is correct).
-  List<EntityInvalidation<TEntity>> evaluate();
+  List<EntityErrors<TEntity>> evaluate(List<EntityErrors<TEntity>> errors);
 }
