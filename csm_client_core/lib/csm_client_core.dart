@@ -16,7 +16,6 @@ export 'src/abstractions/abstractions_module.dart';
 export 'src/common/enums.dart';
 export 'src/common/typedefs.dart';
 export 'src/common/extensions.dart';
-export 'src/common/constants/core_properties_consts.dart';
 
 // --> Exporting [common.exceptions]
 export 'src/common/exceptions/traced_exception.dart';
