@@ -1,0 +1,70 @@
+import 'package:csm_client_core/csm_client_core.dart';
+import 'package:meta/meta.dart';
+
+/// Represents an [IEntity] with [name] and [description] properties
+/// that can help to identify a [IEntity] based on [name] property as this defines them as unique.
+///
+///
+/// [TEntity] - Type of the [IEntity] implementation.
+abstract class NamedEntityBase<TEntity extends IEntity<TEntity>> extends EntityBase<TEntity> implements INamedEntity<TEntity> {
+  /// [EntityI] unique name.
+  @override
+  String name = "";
+
+  /// [EntityI] description.
+  @override
+  String? description;
+
+  /// Encodes the current [TEntity] object into a [DataMap] object.
+  ///
+  ///
+  /// [entityObject] acumulative delegated [DataMap] convertion along the different bases implementations.
+  ///
+  /// When implemented from [NamedEntityBase], is not needed to encode the following properties:
+  ///
+  /// - [id]
+  /// - [timestamp]
+  /// - [discriminator]
+  /// - [name]
+  /// - [description]
+  ///
+  /// They are being auto encoded from the [NamedEntityBase] base behavior.
+  @override
+  @mustCallSuper
+  @mustBeOverridden
+  DataMap encode([DataMap? entityObject]) {
+    DataMap encode = <String, Object?>{
+      EntityKeys.name: name,
+      EntityKeys.description: description,
+    };
+
+    if (entityObject != null) {
+      encode.addEntries(entityObject.entries);
+    }
+
+    return super.encode(encode);
+  }
+
+  /// Decodes the given [DataMap] into the current [TEntity] object, loading the properties bound in the [DataMap].
+  ///
+  ///
+  /// [encode] object storing properties values to load the current [TEntity] instance object.
+  ///
+  /// When implemented from [NamedEntityBase], is not needed to decode the following properties:
+  ///
+  /// - [id]
+  /// - [timestamp]
+  /// - [discriminator]
+  /// - [name]
+  /// - [description]
+  ///
+  /// They are being auto decoded from the [NamedEntityBase] base behavior.
+  @override
+  @mustCallSuper
+  @mustBeOverridden
+  void decode(DataMap encode) {
+    super.decode(encode);
+    name = encode.get(EntityKeys.name);
+    description = encode.get(EntityKeys.description);
+  }
+}

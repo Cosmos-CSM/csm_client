@@ -1,6 +1,6 @@
 name: csm_client_core
 description: A CSM package to client implementations.
-version: 8.2.0
+version: 9.0.0
 publish_to: none
 repository: https://github.com/RMotive/csm_client_core
 

@@ -17,10 +17,10 @@ final class EntityKeys {
 
   //! [Named Entity] properties.
 
-  /// Ket for [NamedEntityI.name]
+  /// Ket for [INamedEntity.name]
   static const String name = 'name';
 
-  /// Key for [NamedEntityI.description] property.
+  /// Key for [INamedEntity.description] property.
   static const String description = 'description';
 
   //! [Referenced Entity] properties.
