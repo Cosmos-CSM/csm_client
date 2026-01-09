@@ -22,11 +22,6 @@ final class TestEntity extends EntityBase<TestEntity> {
       },
     );
   }
-
-  @override
-  List<EntityErrors<TestEntity>> evaluate() {
-    return <EntityErrors<TestEntity>>[];
-  }
 }
 
 void main() {

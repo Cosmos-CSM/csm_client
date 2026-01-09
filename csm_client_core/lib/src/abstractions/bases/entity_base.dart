@@ -67,4 +67,9 @@ abstract class EntityBase<TEntity extends IEntity<TEntity>> implements IEntity<T
     timestamp = encode.get(CorePropertiesConsts.timestamp);
     discriminator = encode.get(CorePropertiesConsts.discriminator);
   }
+
+  @override
+  List<EntityErrors<TEntity>> evaluate(List<EntityErrors<TEntity>> errors) {
+    return <EntityErrors<TEntity>>[];
+  }
 }
