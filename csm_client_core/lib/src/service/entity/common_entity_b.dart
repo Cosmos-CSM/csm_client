@@ -63,8 +63,8 @@ abstract class CommonEntityB<TEntity extends IEntity<TEntity>, TInternal extends
   @mustBeOverridden
   DataMap encode([DataMap? entityObject]) {
     DataMap encode = <String, Object?>{
-      EntityKeys.kInternal: internal?.encode(),
-      EntityKeys.kExternal: external?.encode(),
+      CorePropertiesConsts.internal: internal?.encode(),
+      CorePropertiesConsts.external: external?.encode(),
     };
 
     if (entityObject != null) {
@@ -93,7 +93,7 @@ abstract class CommonEntityB<TEntity extends IEntity<TEntity>, TInternal extends
   @mustBeOverridden
   void decode(DataMap encode) {
     super.decode(encode);
-    internal = encode.getEntity(internalFactory, EntityKeys.kInternal);
-    external = encode.getEntity(externalFactory, EntityKeys.kExternal);
+    internal = encode.getEntity(internalFactory, CorePropertiesConsts.internal);
+    external = encode.getEntity(externalFactory, CorePropertiesConsts.external);
   }
 }

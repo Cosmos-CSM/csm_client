@@ -37,7 +37,7 @@ final class ViewPropertyFilter<T extends IEntity<T>> implements IViewFilter<T> {
   @override
   DataMap encode() {
     return <String, dynamic>{
-      EntityKeys.discriminator: discriminator.toLowerCase(),
+      CorePropertiesConsts.discriminator: discriminator.toLowerCase(),
       'order': order,
       'property': property,
       'evaluation': operator.index,

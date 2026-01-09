@@ -32,7 +32,7 @@ final class ViewLogicalFilter<TEntity extends IEntity<TEntity>> implements IView
         .toList();
 
     return <String, dynamic>{
-      EntityKeys.discriminator: discriminator.toLowerCase(),
+      CorePropertiesConsts.discriminator: discriminator.toLowerCase(),
       'order': order,
       'operator': operator.index,
       'filters': filtersData,

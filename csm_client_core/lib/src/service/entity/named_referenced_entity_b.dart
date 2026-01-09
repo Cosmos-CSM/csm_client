@@ -57,9 +57,9 @@ abstract class NamedReferencedEntityB<T extends IEntity<T>> extends EntityBase<T
   @mustBeOverridden
   DataMap encode([DataMap? entityObject]) {
     DataMap encode = <String, Object?>{
-      EntityKeys.name: name,
-      EntityKeys.kReference: reference,
-      EntityKeys.description: description,
+      CorePropertiesConsts.name: name,
+      CorePropertiesConsts.reference: reference,
+      CorePropertiesConsts.description: description,
     };
 
     if (entityObject != null) {
@@ -89,8 +89,8 @@ abstract class NamedReferencedEntityB<T extends IEntity<T>> extends EntityBase<T
   @mustBeOverridden
   void decode(DataMap encode) {
     super.decode(encode);
-    name = encode.get(EntityKeys.name);
-    reference = encode.get(EntityKeys.kReference);
-    description = encode.get(EntityKeys.description);
+    name = encode.get(CorePropertiesConsts.name);
+    reference = encode.get(CorePropertiesConsts.reference);
+    description = encode.get(CorePropertiesConsts.description);
   }
 }

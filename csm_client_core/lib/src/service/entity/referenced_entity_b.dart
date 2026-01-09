@@ -46,7 +46,7 @@ abstract class ReferencedEntityB<T extends IEntity<T>> extends EntityBase<T> imp
   @mustBeOverridden
   DataMap encode([DataMap? entityObject]) {
     DataMap encode = <String, Object?>{
-      EntityKeys.kReference: reference,
+      CorePropertiesConsts.reference: reference,
     };
 
     if (entityObject != null) {
@@ -74,6 +74,6 @@ abstract class ReferencedEntityB<T extends IEntity<T>> extends EntityBase<T> imp
   @mustBeOverridden
   void decode(DataMap encode) {
     super.decode(encode);
-    reference = encode.get(EntityKeys.kReference);
+    reference = encode.get(CorePropertiesConsts.reference);
   }
 }

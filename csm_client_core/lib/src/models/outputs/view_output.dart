@@ -41,7 +41,7 @@ final class ViewOutput<T extends IEntity<T>> implements IDecodable, IEncodable {
     pages = encode.get('pages');
     length = encode.get('length');
     count = encode.get('count');
-    timestamp = encode.get(EntityKeys.timestamp);
+    timestamp = encode.get(CorePropertiesConsts.timestamp);
 
     final List<DataMap> rawEntities = encode.getList('entities');
     entities = rawEntities.map(
@@ -57,7 +57,7 @@ final class ViewOutput<T extends IEntity<T>> implements IDecodable, IEncodable {
   @override
   DataMap encode() {
     return <String, Object?>{
-      EntityKeys.timestamp: timestamp.toIso8601String(),
+      CorePropertiesConsts.timestamp: timestamp.toIso8601String(),
       'page': page,
       'pages': pages,
       'length': length,

@@ -37,9 +37,9 @@ abstract class EntityBase<TEntity extends IEntity<TEntity>> implements IEntity<T
   @mustBeOverridden
   DataMap encode([DataMap? entityObject]) {
     DataMap encode = <String, Object?>{
-      EntityKeys.id: id.toString(),
-      EntityKeys.discriminator: discriminator,
-      EntityKeys.timestamp: timestamp.toIso8601String(),
+      CorePropertiesConsts.id: id.toString(),
+      CorePropertiesConsts.discriminator: discriminator,
+      CorePropertiesConsts.timestamp: timestamp.toIso8601String(),
     };
 
     if (entityObject != null) {
@@ -65,8 +65,8 @@ abstract class EntityBase<TEntity extends IEntity<TEntity>> implements IEntity<T
   @mustCallSuper
   @mustBeOverridden
   void decode(DataMap encode) {
-    id = encode.get(EntityKeys.id);
-    timestamp = encode.get(EntityKeys.timestamp);
-    discriminator = encode.get(EntityKeys.discriminator);
+    id = encode.get(CorePropertiesConsts.id);
+    timestamp = encode.get(CorePropertiesConsts.timestamp);
+    discriminator = encode.get(CorePropertiesConsts.discriminator);
   }
 }

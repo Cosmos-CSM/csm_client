@@ -16,7 +16,7 @@ export 'src/abstractions/abstractions_module.dart';
 export 'src/common/enums.dart';
 export 'src/common/typedefs.dart';
 export 'src/common/extensions.dart';
-export 'src/common/constants.dart';
+export 'src/common/constants/core_properties_consts.dart';
 
 // --> Exporting [common.exceptions]
 export 'src/common/exceptions/traced_exception.dart';
@@ -45,7 +45,7 @@ export 'src/abstractions/interfaces/ivariation.dart';
 //! --> [Service.Entity]
 
 export 'src/abstractions/bases/entity_base.dart';
-export 'src/service/entity/named_entity_b.dart';
+export 'src/abstractions/bases/named_entity_base.dart';
 export 'src/service/entity/common_entity_b.dart';
 export 'src/service/entity/referenced_entity_b.dart';
 export 'src/service/entity/named_referenced_entity_b.dart';

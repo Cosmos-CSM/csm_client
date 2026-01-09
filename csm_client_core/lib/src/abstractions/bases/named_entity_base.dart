@@ -34,8 +34,8 @@ abstract class NamedEntityBase<TEntity extends IEntity<TEntity>> extends EntityB
   @mustBeOverridden
   DataMap encode([DataMap? entityObject]) {
     DataMap encode = <String, Object?>{
-      EntityKeys.name: name,
-      EntityKeys.description: description,
+      CorePropertiesConsts.name: name,
+      CorePropertiesConsts.description: description,
     };
 
     if (entityObject != null) {
@@ -64,7 +64,7 @@ abstract class NamedEntityBase<TEntity extends IEntity<TEntity>> extends EntityB
   @mustBeOverridden
   void decode(DataMap encode) {
     super.decode(encode);
-    name = encode.get(EntityKeys.name);
-    description = encode.get(EntityKeys.description);
+    name = encode.get(CorePropertiesConsts.name);
+    description = encode.get(CorePropertiesConsts.description);
   }
 }

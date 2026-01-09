@@ -38,7 +38,7 @@ final class ViewInput<T extends IEntity<T>> implements IEncodable {
   @override
   DataMap encode() {
     return <String, Object?>{
-      EntityKeys.timestamp: timestamp,
+      CorePropertiesConsts.timestamp: timestamp,
       'retroactive': retroactive,
       'export': export,
       'range': range,

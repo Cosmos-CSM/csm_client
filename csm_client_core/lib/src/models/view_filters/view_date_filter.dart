@@ -13,7 +13,7 @@ final class ViewDateFilter<T extends IEntity<T>> implements IViewFilter<T> {
   String discriminator = '';
 
   @override
-  String property = EntityKeys.timestamp;
+  String property = CorePropertiesConsts.timestamp;
 
   @override
   int order = 0;
@@ -37,7 +37,7 @@ final class ViewDateFilter<T extends IEntity<T>> implements IViewFilter<T> {
   @override
   DataMap encode() {
     return <String, dynamic>{
-      EntityKeys.discriminator: discriminator.toLowerCase(),
+      CorePropertiesConsts.discriminator: discriminator.toLowerCase(),
       'property': property,
       'order': order,
       'from': from.toIso8601String(),
