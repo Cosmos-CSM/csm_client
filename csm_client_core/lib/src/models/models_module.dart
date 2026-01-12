@@ -6,6 +6,7 @@ export 'abstractions/interfaces/iview_filter_node.dart';
 
 //! --> Exporting [inputs]
 export 'inputs/view_input.dart';
+export 'inputs/update_input.dart';
 
 //! --> Exporting [outputs]
 export 'outputs/view_output.dart';
