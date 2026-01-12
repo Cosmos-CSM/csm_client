@@ -10,6 +10,7 @@ export 'inputs/view_input.dart';
 //! --> Exporting [outputs]
 export 'outputs/view_output.dart';
 export 'outputs/batch_operation_output.dart';
+export 'outputs/update_output.dart';
 
 //! --> Exporting 
 export 'view_ordering.dart';
