@@ -3,7 +3,7 @@ import 'package:csm_client_core/src/abstractions/interfaces/icatalog_entity.dart
 import 'package:meta/meta.dart';
 
 /// Represents an [IEntity] that is part of a catalog,
-abstract class CatalogEntityBase<TEntity extends IEntity<TEntity>> extends NamedEntityBase<TEntity> implements ICatalogEntity<TEntity> {
+abstract class CatalogEntityBase<TEntity extends ICatalogEntity<TEntity>> extends NamedEntityBase<TEntity> implements ICatalogEntity<TEntity> {
   /// Unique reference value.
   ///
   /// It's lenght must be strict 8.
@@ -35,5 +35,21 @@ abstract class CatalogEntityBase<TEntity extends IEntity<TEntity>> extends Named
     isEnabled = encode.get(CorePropertiesConsts.isEnabled);
 
     super.decode(encode);
+  }
+
+  @override
+  List<ObjectDifference> compare(TEntity ref, [List<ObjectDifference> aggregated = const <ObjectDifference>[]]) {
+    if (isEnabled != ref.isEnabled) {
+      aggregated.add(
+        ObjectDifference(
+          PropertyInfo('isEnabled', bool, isEnabled),
+          isEnabled,
+          ref.isEnabled,
+          null,
+        ),
+      );
+    }
+
+    return super.compare(ref, aggregated);
   }
 }

@@ -6,7 +6,7 @@ import 'package:meta/meta.dart';
 ///
 ///
 /// [TEntity] - Type of the [IEntity] implementation.
-abstract class NamedEntityBase<TEntity extends IEntity<TEntity>> extends EntityBase<TEntity> implements INamedEntity<TEntity> {
+abstract class NamedEntityBase<TEntity extends INamedEntity<TEntity>> extends EntityBase<TEntity> implements INamedEntity<TEntity> {
   /// [EntityI] unique name.
   @override
   String name = "";
@@ -89,5 +89,33 @@ abstract class NamedEntityBase<TEntity extends IEntity<TEntity>> extends EntityB
     }
 
     return errors;
+  }
+
+  @override
+  @mustCallSuper
+  List<ObjectDifference> compare(TEntity ref, [List<ObjectDifference> aggregated = const <ObjectDifference>[]]) {
+    if (name != ref.name) {
+      aggregated.add(
+        ObjectDifference(
+          PropertyInfo('name', String, name),
+          name,
+          ref.name,
+          null,
+        ),
+      );
+    }
+
+    if (description != ref.description) {
+      aggregated.add(
+        ObjectDifference(
+          PropertyInfo('description', String, description),
+          description,
+          ref.description,
+          null,
+        ),
+      );
+    }
+
+    return super.compare(ref, aggregated);
   }
 }

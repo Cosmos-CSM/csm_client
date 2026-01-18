@@ -72,4 +72,9 @@ abstract class EntityBase<TEntity extends IEntity<TEntity>> implements IEntity<T
   List<EntityErrors<TEntity>> evaluate(List<EntityErrors<TEntity>> errors) {
     return <EntityErrors<TEntity>>[];
   }
+
+  @override
+  List<ObjectDifference> compare(TEntity ref, [List<ObjectDifference> aggregated = const <ObjectDifference>[]]) {
+    return aggregated;
+  }
 }

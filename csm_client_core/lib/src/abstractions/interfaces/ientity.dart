@@ -3,7 +3,7 @@ import 'package:csm_client_core/csm_client_core.dart';
 /// Represents a business entity.
 ///
 /// [TEntity] - type of the entity, used for inferred operation types.
-abstract interface class IEntity<TEntity extends IEntity<TEntity>> implements IEncodable, IDecodable, IVariation {
+abstract interface class IEntity<TEntity extends IEntity<TEntity>> implements IEncodable, IDecodable, IVariation, IComparableObject<TEntity> {
   /// Entity database pointer.
   late BigInt id;
 

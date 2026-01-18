@@ -16,6 +16,7 @@ export 'outputs/update_output.dart';
 //! --> Exporting 
 export 'view_ordering.dart';
 export 'pagination_data.dart';
+export 'object_difference.dart';
 export 'entity_operation_error.dart';
 
 export 'view_filters/view_date_filter.dart';
