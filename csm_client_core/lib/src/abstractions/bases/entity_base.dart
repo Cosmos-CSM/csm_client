@@ -74,7 +74,9 @@ abstract class EntityBase<TEntity extends IEntity<TEntity>> implements IEntity<T
   }
 
   @override
-  List<ObjectDifference> compare(TEntity ref, [List<ObjectDifference> aggregated = const <ObjectDifference>[]]) {
+  List<ObjectDifference> compare(TEntity ref, [List<ObjectDifference>? aggregated]) {
+    aggregated ??= <ObjectDifference>[];
+
     return aggregated;
   }
 }

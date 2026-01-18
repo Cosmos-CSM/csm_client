@@ -93,7 +93,9 @@ abstract class NamedEntityBase<TEntity extends INamedEntity<TEntity>> extends En
 
   @override
   @mustCallSuper
-  List<ObjectDifference> compare(TEntity ref, [List<ObjectDifference> aggregated = const <ObjectDifference>[]]) {
+  List<ObjectDifference> compare(TEntity ref, [List<ObjectDifference>? aggregated]) {
+    aggregated ??= <ObjectDifference>[];
+
     if (name != ref.name) {
       aggregated.add(
         ObjectDifference(

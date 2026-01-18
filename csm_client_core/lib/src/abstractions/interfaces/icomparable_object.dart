@@ -8,5 +8,5 @@ abstract interface class IComparableObject<TObject> {
   /// [ref] - Object possible differences from this current original values [TObject].
   ///
   /// [aggregated] - Whether the abstraction levels need to pass differences calcultion to super methods.
-  List<ObjectDifference> compare(TObject ref, [List<ObjectDifference> aggregated = const <ObjectDifference>[]]);
+  List<ObjectDifference> compare(TObject ref, [List<ObjectDifference>? aggregated]);
 }

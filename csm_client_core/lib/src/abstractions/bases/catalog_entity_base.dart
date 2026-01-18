@@ -38,7 +38,9 @@ abstract class CatalogEntityBase<TEntity extends ICatalogEntity<TEntity>> extend
   }
 
   @override
-  List<ObjectDifference> compare(TEntity ref, [List<ObjectDifference> aggregated = const <ObjectDifference>[]]) {
+  List<ObjectDifference> compare(TEntity ref, [List<ObjectDifference>? aggregated]) {
+    aggregated ??= <ObjectDifference>[];
+
     if (isEnabled != ref.isEnabled) {
       aggregated.add(
         ObjectDifference(
