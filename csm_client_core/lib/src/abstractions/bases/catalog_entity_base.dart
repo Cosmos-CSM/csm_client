@@ -38,6 +38,8 @@ abstract class CatalogEntityBase<TEntity extends ICatalogEntity<TEntity>> extend
   }
 
   @override
+  @mustCallSuper
+  @mustBeOverridden
   List<ObjectDifference> compare(TEntity ref, [List<ObjectDifference>? aggregated]) {
     aggregated ??= <ObjectDifference>[];
 

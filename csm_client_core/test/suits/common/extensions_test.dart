@@ -22,6 +22,24 @@ final class TestEntity extends EntityBase<TestEntity> {
       },
     );
   }
+
+  @override
+  List<ObjectDifference> compare(TestEntity ref, [List<ObjectDifference>? aggregated]) {
+    aggregated ??= <ObjectDifference>[];
+
+    if (propValue != ref.propValue) {
+      aggregated.add(
+        ObjectDifference(
+          PropertyInfo('propValue', String, propValue),
+          propValue,
+          ref.propValue,
+          null,
+        ),
+      );
+    }
+
+    return super.compare(ref, aggregated);
+  }
 }
 
 void main() {

@@ -74,6 +74,8 @@ abstract class EntityBase<TEntity extends IEntity<TEntity>> implements IEntity<T
   }
 
   @override
+  @mustCallSuper
+  @mustBeOverridden
   List<ObjectDifference> compare(TEntity ref, [List<ObjectDifference>? aggregated]) {
     aggregated ??= <ObjectDifference>[];
 

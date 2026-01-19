@@ -93,6 +93,7 @@ abstract class NamedEntityBase<TEntity extends INamedEntity<TEntity>> extends En
 
   @override
   @mustCallSuper
+  @mustBeOverridden
   List<ObjectDifference> compare(TEntity ref, [List<ObjectDifference>? aggregated]) {
     aggregated ??= <ObjectDifference>[];
 
